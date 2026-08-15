@@ -265,6 +265,7 @@
 	<!-- Start of bodyEnd -->
     <script>
       (function() {
+        // Navigation interception
         document.addEventListener("click", function(e) {
           var target = e.target;
           while (target && target !== document.body) {
@@ -286,6 +287,46 @@
             target = target.parentNode;
           }
         }, true);
+
+        // Catchy Copywriting for Staff Time-Saving, School Insights, and Parent-Child Progress tracking
+        var textMapping = {
+          "div.framer-iox8wi h1": "Hours saved for staff. Real-time insights for parents. Clear outcomes for students.",
+          "div.framer-1tgiw5b p": "Klassify is the AI-powered school OS that automates attendance, billing, and report cards—saving hours for teachers and admin, while giving parents daily, real-time insights into their child's progress.",
+          "div.framer-1td3y4m p": "Automating repetitive chores for all staff",
+          "div.framer-10oqnas p": "Deep operational insights for leadership",
+          "div.framer-sgnip6 p": "Real-time insights for parents & teachers",
+          "div.framer-1vq8tgm p": "AI-automated attendance saves teachers 30 mins daily, instantly notifying parents of absentees.",
+          "div.framer-c62ono p": "Auto-reminders and clear digital ledgers make fee collections stress-free for families and accountants.",
+          "div.framer-89kwwn p": "Generate visual report cards with AI comments, giving parents clear progress trends.",
+          "div.framer-18g06sr p": "Instant dashboards surface operational bottlenecks, fee drops, and class performance trends.",
+          "div.framer-mfmpdg p": "Klassify automatically flags students needing academic attention, automates grading notes, and surfaces actionable fee priorities—keeping everyone unified."
+        };
+
+        function updateTexts() {
+          for (var selector in textMapping) {
+            var el = document.querySelector(selector);
+            if (el && el.textContent !== textMapping[selector]) {
+              el.textContent = textMapping[selector];
+            }
+          }
+        }
+
+        // Run immediately
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", updateTexts);
+        } else {
+          updateTexts();
+        }
+
+        // Observe DOM mutations to override React hydration replacements dynamically
+        var observer = new MutationObserver(function() {
+          updateTexts();
+        });
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+          characterData: true
+        });
       })();
     </script>
     <!-- End of bodyEnd -->
