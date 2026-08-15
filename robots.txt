@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://klassify-kixl68mm7-mighty-uno.vercel.app/sitemap.xml
