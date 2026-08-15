@@ -7,5 +7,16 @@
   "rewrites": [
     { "source": "/", "destination": "/Klassify.html" },
     { "source": "/contact", "destination": "/Contact.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*).mjs",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    }
   ]
 }
