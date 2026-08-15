@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/Klassify.html" },
+    { "source": "/contact", "destination": "/Contact.html" }
+  ]
+}
