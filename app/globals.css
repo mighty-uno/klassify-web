@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #14162b;
+  --night: #0d0e1a;
+  --primary: #4a3aff;
+  --accent: #ff5c38;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+body {
+  @apply bg-canvas text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(74, 58, 255, 0.18);
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-wider;
+  }
+
+  .label-mono {
+    @apply font-mono text-[11px] font-medium tracking-[0.4px];
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-white;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-primary-dark;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-colors duration-200 hover:bg-white/20;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-[10px] border border-line bg-white px-5 py-3 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-canvas;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .prose-legal h2 {
+    @apply mb-3 mt-10 text-2xl font-bold tracking-tight text-ink first:mt-0;
+  }
+
+  .prose-legal h3 {
+    @apply mb-2 mt-8 text-lg font-semibold text-ink;
+  }
+
+  .prose-legal p,
+  .prose-legal li {
+    @apply text-[15px] leading-7 text-muted;
+  }
+
+  .prose-legal ul {
+    @apply mb-6 mt-2 list-disc space-y-2 pl-5;
+  }
+
+  .prose-legal ol {
+    @apply mb-6 mt-2 list-decimal space-y-2 pl-5;
+  }
+
+  .prose-legal a {
+    @apply font-medium text-primary underline underline-offset-2 hover:text-primary-dark;
+  }
+
+  .prose-legal strong {
+    @apply text-ink;
+  }
+}
