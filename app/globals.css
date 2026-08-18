@@ -67,6 +67,13 @@ body {
     @apply py-20 md:py-28;
   }
 
+  .sr-only {
+    @apply absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .prose-legal h2 {
     @apply mb-3 mt-10 text-2xl font-bold tracking-tight text-ink first:mt-0;
   }

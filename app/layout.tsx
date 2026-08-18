@@ -29,12 +29,21 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} — AI-powered school operating system`,
     description: siteConfig.description,
-    url: siteConfig.url
+    url: siteConfig.url,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — AI-powered school operating system`
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — AI-powered school operating system`,
-    description: siteConfig.description
+    description: siteConfig.description,
+    images: ["/og.png"]
   },
   robots: {
     index: true,

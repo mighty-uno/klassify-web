@@ -45,7 +45,11 @@ export function TypewriterHeadline({ className }: { className?: string }) {
   }, [text, deleting, phraseIndex]);
 
   return (
-    <h1 className={className} aria-label={phrases[phraseIndex]}>
+    <h1 className={className}>
+      <span className="sr-only">
+        Hours saved for staff. Real-time insights for parents. Clear outcomes for
+        students.
+      </span>
       <span aria-hidden>{text}</span>
       <span
         aria-hidden

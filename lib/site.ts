@@ -8,7 +8,7 @@ export const siteConfig = {
   tagline: "School operations, made calmer.",
   description:
     "Klassify is the AI-powered school OS that automates attendance, billing, and report cards — saving hours for teachers and admin, while giving parents daily, real-time insights into their child's progress.",
-  url: "https://klassify-kixl68mm7-mighty-uno.vercel.app",
+  url: "https://klassify.vidhiworks.com",
   email: "contact.klassify@vidhiworks.com",
   supportEmail: "vidhiworks@zohomail.in",
   registeredOffice: "Mumbai, Maharashtra, India",

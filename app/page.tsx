@@ -19,25 +19,81 @@ export const metadata: Metadata = {
   }
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: siteConfig.name,
-  operatingSystem: "All",
-  applicationCategory: "EducationalApplication, BusinessApplication",
-  description:
-    "Klassify is the AI-powered school ERP that gives educators time back. Streamline attendance, billing, results, and day-to-day operations.",
-  offers: {
-    "@type": "Offer",
-    price: "0.00",
-    priceCurrency: siteConfig.currency
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: siteConfig.name,
+    operatingSystem: "All",
+    applicationCategory: "EducationalApplication, BusinessApplication",
+    description:
+      "Klassify is the AI-powered school ERP that gives educators time back. Streamline attendance, billing, results, and day-to-day operations.",
+    offers: {
+      "@type": "Offer",
+      price: "0.00",
+      priceCurrency: siteConfig.currency
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.companyName,
+      url: siteConfig.url
+    }
   },
-  publisher: {
-    "@type": "Organization",
-    name: siteConfig.companyName,
-    email: siteConfig.email
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How long does it take to set up Klassify for our school?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Most schools go live in under two weeks. Our onboarding team helps import classes, staff and students, and trains your team so day one feels familiar."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Does the voice attendance work for large classrooms?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Teachers read out names and Klassify captures the roll call in about three seconds per student, flagging absentees and notifying parents instantly — even for full-size classrooms."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Is our student and parent data secure?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Absolutely. Klassify follows standard security practices for education data, including encrypted storage and access controls, so only authorised staff can view records. See our Privacy Policy for full details."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Will our office staff need to change how they work?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Klassify is designed around the workflows schools already follow, so teams adopt it quickly. The AI quietly automates the repetitive parts while people keep their familiar routines."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Can parents use Klassify on their phones?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Parents get a mobile-friendly portal with daily attendance updates, fee status and progress insights — no separate app installation required."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "What does Klassify cost?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Pricing is per student, per month and depends on your school's size and selected plan. Book a demo and we'll share a clear quote tailored to your school."
+        }
+      }
+    ]
   }
-};
+];
 
 export default function HomePage() {
   return (
