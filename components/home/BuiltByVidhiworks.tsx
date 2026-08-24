@@ -40,7 +40,7 @@ export function BuiltByVidhiworks() {
               className="h-12 w-auto"
             />
             <h2 className="mt-1 max-w-2xl text-balance text-4xl font-extrabold tracking-[-1.8px] text-ink md:text-[44px] md:leading-[1.08]">
-              Klassify is built by Vidhiworks.
+              SkooBee is built by Vidhiworks.
             </h2>
             <p className="max-w-2xl text-[17px] leading-relaxed text-muted">
               {siteConfig.companyDescription}

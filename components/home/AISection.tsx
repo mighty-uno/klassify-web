@@ -22,14 +22,14 @@ export function AISection() {
               <SectionLabel index="03" title="AI integration" light />
               <span className="label-mono inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-accent-light">
                 <Sparkles size={11} />
-                Klassify AI
+                SkooBee AI
               </span>
             </div>
             <h2 className="mt-5 text-balance text-4xl font-extrabold tracking-[-1.8px] md:text-[44px] md:leading-[1.08]">
               The quietest member of your admin team.
             </h2>
             <p className="mt-4 text-[17px] leading-relaxed text-muted-3">
-              Klassify uses AI to reduce repetitive work, surface useful patterns
+              SkooBee uses AI to reduce repetitive work, surface useful patterns
               and keep your team one step ahead — without asking staff to change
               how they work. Watch it quietly generate the daily summary while
               your office gets on with the day.

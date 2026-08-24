@@ -1,8 +1,8 @@
 {
-  "name": "klassify",
+  "name": "skoobee",
   "version": "1.0.0",
   "private": true,
-  "description": "Klassify — the AI-powered school operating system. Official website built with Next.js.",
+  "description": "SkooBee — the AI-powered school operating system and ERP. Official website built with Next.js.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

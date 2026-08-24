@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact us",
   description:
-    "Get in touch with the Klassify team. Tell us about your school and we will get back to you.",
+    "Get in touch with the SkooBee team. Tell us about your school and we will get back to you.",
   alternates: {
     canonical: `${siteConfig.url}/contact`
   }
@@ -30,7 +30,7 @@ export default function ContactPage() {
             Let&apos;s talk about your school.
           </h1>
           <p className="max-w-[560px] text-[17px] leading-relaxed text-muted-3">
-            Tell us a little about your school and the team at Klassify will get
+            Tell us a little about your school and the team at SkooBee will get
             back to you.
           </p>
         </div>
@@ -52,10 +52,10 @@ export default function ContactPage() {
           <div className="flex flex-col gap-8">
             <div className="card overflow-hidden">
               <Image
-                src="/dashboard.png"
-                alt="Klassify school ERP dashboard preview"
+                src="/assets/web-dashboard.png"
+                alt="SkooBee school ERP dashboard preview"
                 width={1440}
-                height={1377}
+                height={900}
                 className="h-auto w-full"
               />
             </div>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                 your details and we will reach out with what fits your school.
               </p>
               <p className="text-sm leading-6 text-muted-2">
-                Klassify is built by {siteConfig.companyName}, a product studio
+                SkooBee is built by {siteConfig.companyName}, a product studio
                 for Indian schools.
               </p>
 

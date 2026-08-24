@@ -23,7 +23,7 @@ export function CTA() {
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-muted-3">
                 Bring every admin workflow into one clear, dependable system.
-                Tell us about your school and the Klassify team will get back to
+                Tell us about your school and the SkooBee team will get back to
                 you.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -31,8 +31,8 @@ export function CTA() {
                   Book a demo
                   <ArrowRight size={16} />
                 </Link>
-                <Link href="/contact" className="btn-secondary">
-                  Talk to our team
+                <Link href="/slides" className="btn-secondary">
+                  Explore system slides
                 </Link>
               </div>
             </div>

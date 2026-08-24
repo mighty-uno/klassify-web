@@ -36,7 +36,7 @@ export function Hero() {
           className="mt-14 flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 px-4 py-2"
         >
           <span className="inline-block h-[7px] w-[7px] rounded-full bg-accent" />
-          <span className="label-mono text-white">AI School OS</span>
+          <span className="label-mono text-white">AI School ERP</span>
           <Sparkles size={13} className="text-accent" />
         </motion.div>
 
@@ -46,12 +46,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.1 }}
-          className="max-w-[560px] text-[17px] leading-relaxed text-muted-3"
+          className="max-w-[600px] text-[17px] leading-relaxed text-muted-3"
         >
-          Klassify is the AI-powered school OS that automates attendance,
-          billing, and report cards — saving hours for teachers and admin, while
-          giving parents daily, real-time insights into their child&apos;s
-          progress.
+          SkooBee is the AI-powered school ERP and operating system that
+          automates attendance, fees, schedules, payroll, and report cards —
+          saving hours for teachers and admin, while keeping parents in the loop.
         </motion.p>
 
         <motion.div
@@ -64,8 +63,9 @@ export function Hero() {
             Book a demo
             <ArrowRight size={16} />
           </Link>
-          <Link href="/contact" className="btn-secondary">
-            Talk to our team
+          <Link href="/slides" className="btn-secondary flex items-center gap-2">
+            <span>View system slides</span>
+            <span className="rounded bg-accent px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">Interactive</span>
           </Link>
         </motion.div>
 
@@ -79,16 +79,17 @@ export function Hero() {
             style={{ y: imageY }}
             className="overflow-hidden rounded-[20px] border border-white/25 bg-white shadow-hero"
           >
-            <div className="flex items-center gap-2 bg-[#f3f3f7] px-6 py-3.5">
-              <span className="h-2 w-2 rounded-full bg-accent" />
-              <span className="h-2 w-2 rounded-full bg-line" />
-              <span className="h-2 w-2 rounded-full bg-line" />
+            <div className="flex items-center gap-2 bg-[#f3f3f7] px-6 py-3.5 border-b border-[#e5e5ea]">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+              <span className="ml-3 font-mono text-[11px] font-semibold text-[#8F87AD]">SkooBee Web Console — Live School Pulse</span>
             </div>
             <Image
-              src="/dashboard.png"
-              alt="Klassify school ERP dashboard preview"
+              src="/assets/web-dashboard.png"
+              alt="SkooBee school ERP dashboard preview"
               width={1440}
-              height={1377}
+              height={900}
               priority
               className="h-auto w-full"
             />
@@ -98,3 +99,4 @@ export function Hero() {
     </section>
   );
 }
+

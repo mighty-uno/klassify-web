@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description:
-    "How the Klassify website uses cookies and similar technologies, and how you can manage them."
+    "How the SkooBee website uses cookies and similar technologies, and how you can manage them."
 };
 
 export default function CookiesPage() {
@@ -14,7 +14,7 @@ export default function CookiesPage() {
     <LegalPage
       eyebrow="Legal"
       title="Cookie Policy"
-      intro="This Cookie Policy explains how the Klassify website, operated by Vidhiworks, uses cookies and similar technologies, and the choices you have to control them."
+      intro="This Cookie Policy explains how the SkooBee website, operated by Vidhiworks, uses cookies and similar technologies, and the choices you have to control them."
       lastUpdated={siteConfig.lastUpdated}
     >
       <h2>1. What are cookies?</h2>
@@ -25,7 +25,7 @@ export default function CookiesPage() {
       </p>
 
       <h2>2. How we use cookies</h2>
-      <p>We use cookies and similar technologies on the Klassify website to:</p>
+      <p>We use cookies and similar technologies on the SkooBee website to:</p>
       <ul>
         <li>Keep the website secure and functioning correctly.</li>
         <li>Remember basic preferences during your visit.</li>

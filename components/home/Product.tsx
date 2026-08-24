@@ -100,12 +100,16 @@ export function Product() {
             custom={0}
             className="card overflow-hidden p-3 md:p-5"
           >
+            <div className="mb-3 flex items-center justify-between px-2">
+              <span className="label-mono uppercase text-primary">Web Console · Fees & Finance</span>
+              <span className="text-xs text-muted">Auto reminders & collection analytics</span>
+            </div>
             <Image
-              src="/staff-registry.png"
-              alt="Klassify staff registry screen"
+              src="/assets/web-fees.png"
+              alt="SkooBee fee collection and finance dashboard"
               width={1440}
-              height={1024}
-              className="h-auto w-full rounded-xl"
+              height={900}
+              className="h-auto w-full rounded-xl border border-line"
             />
           </motion.div>
 
@@ -117,29 +121,34 @@ export function Product() {
             custom={1}
             className="card mt-6 overflow-hidden p-3 md:p-5"
           >
+            <div className="mb-3 flex items-center justify-between px-2">
+              <span className="label-mono uppercase text-primary">Web Console · Attendance & Operations</span>
+              <span className="text-xs text-muted">Daily roll call & student trends</span>
+            </div>
             <Image
-              src="/teacher-overview.png"
-              alt="Klassify teacher overview screen"
+              src="/assets/web-attendance.png"
+              alt="SkooBee daily attendance operations screen"
               width={1440}
-              height={1024}
-              className="h-auto w-full rounded-xl"
+              height={900}
+              className="h-auto w-full rounded-xl border border-line"
             />
           </motion.div>
 
-          <div className="mx-auto mt-6 grid w-full max-w-xl grid-cols-2 items-end gap-6 md:gap-10">
+          <div className="mx-auto mt-8 grid w-full max-w-4xl grid-cols-1 sm:grid-cols-3 items-end gap-6 md:gap-8">
             <motion.div
               variants={phoneScreen}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               custom={0}
-              className="card overflow-hidden p-3"
+              className="card overflow-hidden p-3 shadow-md"
             >
+              <p className="mb-2 text-center text-xs font-bold text-ink">Admin App</p>
               <Image
-                src="/attendance-portal.png"
-                alt="Klassify attendance portal mobile screen"
+                src="/assets/mobile-admin.png"
+                alt="SkooBee Admin Mobile App"
                 width={375}
-                height={840}
+                height={750}
                 className="h-auto w-full rounded-lg"
               />
             </motion.div>
@@ -149,13 +158,31 @@ export function Product() {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               custom={1}
-              className="card overflow-hidden p-3"
+              className="card overflow-hidden p-3 shadow-md"
             >
+              <p className="mb-2 text-center text-xs font-bold text-ink">Teacher Roll Call</p>
               <Image
-                src="/attendance-list.png"
-                alt="Klassify attendance list mobile screen"
+                src="/assets/mobile-tatt.png"
+                alt="SkooBee Teacher Roll Call App"
                 width={375}
-                height={849}
+                height={750}
+                className="h-auto w-full rounded-lg"
+              />
+            </motion.div>
+            <motion.div
+              variants={phoneScreen}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              custom={2}
+              className="card overflow-hidden p-3 shadow-md"
+            >
+              <p className="mb-2 text-center text-xs font-bold text-ink">Parent App</p>
+              <Image
+                src="/assets/mobile-parent.png"
+                alt="SkooBee Parent App"
+                width={375}
+                height={750}
                 className="h-auto w-full rounded-lg"
               />
             </motion.div>
@@ -165,3 +192,4 @@ export function Product() {
     </section>
   );
 }
+

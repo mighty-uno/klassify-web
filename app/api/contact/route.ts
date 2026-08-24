@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     email: String(body.email ?? "").trim(),
     school: String(body.school ?? "").trim(),
     address: String(body.address ?? "").trim(),
-    _subject: "New Klassify contact enquiry",
+    _subject: "New SkooBee contact enquiry",
     _template: "table",
     _captcha: "false"
   };

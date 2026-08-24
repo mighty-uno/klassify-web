@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "The terms that govern the use of the Klassify website and the AI-powered school operating system."
+    "The terms that govern the use of the SkooBee website and the AI-powered school operating system."
 };
 
 export default function TermsPage() {
@@ -14,12 +14,12 @@ export default function TermsPage() {
     <LegalPage
       eyebrow="Legal"
       title="Terms of Service"
-      intro="These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of the Klassify website and the Klassify school operating system provided by Vidhiworks. By using our website or service, you agree to these Terms."
+      intro="These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of the SkooBee website and the SkooBee school operating system provided by Vidhiworks. By using our website or service, you agree to these Terms."
       lastUpdated={siteConfig.lastUpdated}
     >
       <h2>1. Acceptance of terms</h2>
       <p>
-        By accessing the Klassify website or signing up for the service, you confirm that you
+        By accessing the SkooBee website or signing up for the service, you confirm that you
         are authorised to accept these Terms on behalf of your school or organisation, and
         that you agree to be bound by them. If you do not agree, please do not use the
         service.
@@ -27,7 +27,7 @@ export default function TermsPage() {
 
       <h2>2. Description of the service</h2>
       <p>
-        Klassify is an AI-powered school operating system that helps schools manage
+        SkooBee is an AI-powered school operating system that helps schools manage
         attendance, fees, results, and reporting. The service may be updated, improved, or
         extended over time, and these Terms apply to all such changes.
       </p>
@@ -55,7 +55,7 @@ export default function TermsPage() {
 
       <h2>5. AI-generated content</h2>
       <p>
-        Klassify may generate content such as attendance summaries, fee priorities, and report
+        SkooBee may generate content such as attendance summaries, fee priorities, and report
         card comments using AI. AI output is generated from your school&apos;s data and is
         provided as an aid to school staff. You are responsible for reviewing, verifying, and
         approving AI-generated content before it is relied upon or shared. We are not liable
@@ -81,7 +81,7 @@ export default function TermsPage() {
 
       <h2>8. Intellectual property</h2>
       <p>
-        Klassify, its name, logo, and all software, design, and content of the service are
+        SkooBee, its name, logo, and all software, design, and content of the service are
         owned by {siteConfig.companyName} or its licensors. Your school data remains yours.
         This agreement does not transfer any ownership rights to you.
       </p>

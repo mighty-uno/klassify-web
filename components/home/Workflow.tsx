@@ -8,12 +8,12 @@ const steps = [
     step: "Step 1",
     title: "Connect your school",
     description:
-      "Onboard classes, staff and students once. Klassify imports your existing structure so day one feels familiar."
+      "Onboard classes, staff and students once. SkooBee imports your existing structure so day one feels familiar."
   },
   {
     icon: CalendarClock,
     step: "Step 2",
-    title: "Klassify runs the day",
+    title: "SkooBee runs the day",
     description:
       "Attendance is captured in seconds, fees are collected and tracked, results and reports are generated automatically."
   },
@@ -25,6 +25,7 @@ const steps = [
       "Leadership, teachers and parents get real-time, role-appropriate updates — no chasing, no follow-up calls."
   }
 ];
+
 
 export function Workflow() {
   return (

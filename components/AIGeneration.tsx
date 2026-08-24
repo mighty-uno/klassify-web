@@ -77,7 +77,7 @@ export function AIGeneration() {
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent/15 text-accent">
             <Sparkles size={13} />
           </span>
-          <span className="label-mono text-white">Klassify AI</span>
+          <span className="label-mono text-white">SkooBee AI</span>
         </div>
         <span className="label-mono inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-2.5 py-1 text-accent-light">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />

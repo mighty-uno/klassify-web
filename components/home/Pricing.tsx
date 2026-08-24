@@ -37,7 +37,7 @@ export function Pricing() {
                 <div className="flex flex-col gap-6">
                   <div>
                     <span className="label-mono uppercase text-primary">
-                      Klassify for Schools
+                      SkooBee for Schools
                     </span>
                     <h3 className="mt-3 text-3xl font-extrabold tracking-tight text-ink">
                       Per student, per month
@@ -81,7 +81,7 @@ export function Pricing() {
                     Free for teachers — every day
                   </h4>
                   <p className="mt-1 text-sm leading-6 text-muted">
-                    Teachers use Klassify at no cost: mark daily attendance,
+                    Teachers use SkooBee at no cost: mark daily attendance,
                     manage class tasks, and get limited AI assistance each day
                     to keep their workload light.
                   </p>

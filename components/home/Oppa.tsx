@@ -14,7 +14,7 @@ const steps = [
     icon: Layers,
     title: "Oppa learns every page",
     description:
-      "Klassify builds an AI layer over your own content, so answers stay grounded in what you actually teach."
+      "SkooBee builds an AI layer over your own content, so answers stay grounded in what you actually teach."
   },
   {
     icon: MessageCircleQuestion,
@@ -38,14 +38,14 @@ export function Oppa() {
     <section id="oppa" className="section-pad bg-white">
       <div className="container-page">
         <Reveal>
-          <SectionLabel index="06" title="Oppa · Learning assistant" />
+          <SectionLabel index="06" title="Oppa · SkooBee AI" />
           <h2 className="mt-5 max-w-2xl text-balance text-4xl font-extrabold tracking-[-1.8px] text-ink md:text-[44px] md:leading-[1.08]">
             Turn every book in your school into a teacher.
           </h2>
           <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-muted">
-            Meet <strong className="text-ink">Oppa</strong> — your AI learning
+            Meet <strong className="text-ink">Oppa</strong> — your SkooBee AI learning
             assistant. Schools and teachers upload their books, worksheets and
-            lesson material. Klassify builds a learning layer over them, and
+            lesson material. SkooBee builds an intelligence layer over them, and
             students and teachers start asking questions.
           </p>
         </Reveal>

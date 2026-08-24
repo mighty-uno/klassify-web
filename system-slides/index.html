@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SkooBee — System Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF7EC;
+    --ink: #2B2160;
+    --ink-soft: #5A5378;
+    --muted: #8F87AD;
+    --brand: #4A3AFF;
+    --brand-soft: #F0EEFF;
+    --success: #3FB58C;
+    --success-soft: #E7F7F0;
+    --amber: #D97706;
+    --amber-soft: #FEF3E2;
+    --coral: #FF5C38;
+    --coral-soft: #FFEDE7;
+    --border: #F3E7D2;
+    --card: #FFFFFF;
+    --bg: #FFF7EC;
+    --dark-bg: #2B2160;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); }
+
+  .deck { position: relative; width: 100vw; height: 100vh; }
+  .slide {
+    position: absolute; inset: 0; display: none;
+    padding: 56px 72px; overflow: hidden;
+    flex-direction: column;
+    background: var(--bg);
+  }
+  .slide.active { display: flex; animation: fadeUp .45s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .slide.dark { background: radial-gradient(120% 140% at 85% -10%, #3B2A8F 0%, var(--dark-bg) 45%, #1D1550 100%); color: #fff; }
+  .slide.dark .kicker, .slide.dark .sub { color: #C9C1EA; }
+  .slide.dark .muted { color: #A9A1D6; }
+
+  .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: var(--brand); margin-bottom: 10px; }
+  .kicker::before { content: ''; width: 22px; height: 3px; border-radius: 3px; background: currentColor; }
+  h1.hero { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 62px; line-height: 1.02; letter-spacing: -1.5px; }
+  h2 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 42px; line-height: 1.08; letter-spacing: -1px; }
+  .sub { font-size: 16px; color: var(--ink-soft); margin-top: 12px; line-height: 1.6; max-width: 780px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; flex: 1; min-height: 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+  .card .ic { width: 46px; height: 46px; border-radius: 13px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+
+  .shot { border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: #fff; box-shadow: 0 18px 50px -18px rgba(43,33,96,.28); }
+  .shot img { width: 100%; display: block; }
+
+  .phone { border-radius: 26px; overflow: hidden; border: 6px solid #1D1550; box-shadow: 0 24px 60px -20px rgba(43,33,96,.45); max-height: 100%; }
+  .phone img { display: block; width: auto; height: 100%; }
+
+  .pill { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 999px; }
+  .pill i { width: 8px; height: 8px; border-radius: 50%; }
+
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
+  .tbl th { text-align: left; font-size: 11.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); padding: 12px 16px; border-bottom: 2px solid var(--border); }
+  .tbl td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .tbl td b { display: block; font-size: 13.5px; }
+  .tbl .x { color: var(--muted); }
+  .tbl .mark { color: var(--coral); font-weight: 800; }
+  .tbl .mark-good { color: var(--success); font-weight: 800; }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl th:first-child, .tbl td:first-child { border-left: none; }
+
+  .timeline-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 26px; align-items: stretch; }
+  .tl { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 22px; }
+  .tl .role { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.4px; color: var(--brand); margin-bottom: 14px; }
+  .tl .before, .tl .after { font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); }
+  .tl .before b, .tl .after b { color: var(--ink); }
+  .tl .before { padding: 10px 12px; background: var(--coral-soft); border-radius: 12px; color: #7A2E1E; }
+  .tl .after { padding: 10px 12px; background: var(--success-soft); border-radius: 12px; color: #1F6A50; margin-top: 8px; }
+  .tl .saved { margin-top: 12px; font-size: 12.5px; font-weight: 800; color: var(--success); }
+  .arrow { align-self: center; font-size: 30px; color: var(--brand); font-weight: 800; }
+
+  .badge-roadmap { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; background: var(--amber-soft); color: var(--amber); padding: 6px 12px; border-radius: 999px; }
+  .tag-coming { display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase; color: var(--amber); background: var(--amber-soft); border: 1px solid #F0D9AC; padding: 5px 11px; border-radius: 999px; white-space: nowrap; }
+  .tag-coming.dark { color: #FFC77D; background: rgba(217,119,6,.15); border-color: rgba(255,199,125,.4); }
+
+  .feat-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feat { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .feat .num { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: var(--brand); }
+  .feat h3 { font-size: 16px; font-weight: 800; }
+  .feat p { font-size: 12.5px; line-height: 1.6; color: var(--ink-soft); flex: 1; }
+  .feat .chip { align-self: flex-start; }
+
+  .shots-grid { display: grid; gap: 16px; flex: 1; min-height: 0; }
+  .shots-grid.web { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
+  .shots-grid.mob { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); }
+  .tile { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #fff; box-shadow: 0 10px 30px -14px rgba(43,33,96,.25); }
+  .tile img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .tile .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 14px 10px; background: linear-gradient(transparent, rgba(29,21,80,.86)); color: #fff; font-size: 11.5px; font-weight: 700; }
+  .tile.mobcap .cap { text-align: center; padding-top: 20px; }
+
+  .carousel { position: relative; flex: 1; display: flex; align-items: stretch; justify-content: center; gap: 14px; min-height: 0; margin-top: 18px; }
+  .car-arrow { align-self: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: #fff; color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .2s; box-shadow: 0 8px 20px -10px rgba(43,33,96,.3); }
+  .car-arrow:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .car-arrow svg { width: 20px; height: 20px; }
+  .slide.dark .car-arrow { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); color: #E6E2F8; }
+  .slide.dark .car-arrow:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .car-stage { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; }
+  .car-item { height: 100%; width: 100%; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+  .car-item.active { display: flex; animation: fadeUp .4s ease both; }
+  .car-item img { max-width: 100%; max-height: calc(100% - 52px); border-radius: 16px; object-fit: contain; }
+  .carousel.web .car-item img { border: 1px solid var(--border); background: #fff; box-shadow: 0 22px 55px -20px rgba(43,33,96,.35); }
+  .carousel.mob .car-item img { box-shadow: 0 26px 60px -22px rgba(29,21,80,.55); }
+  .car-cap { font-size: 13.5px; font-weight: 700; color: var(--ink); text-align: center; }
+  .slide.dark .car-cap { color: #E6E2F8; }
+  .car-foot { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 4px; }
+  .car-dots { display: flex; gap: 8px; }
+  .car-dots button { width: 9px; height: 9px; border-radius: 50%; border: none; background: #D9D3EA; cursor: pointer; padding: 0; transition: all .2s; }
+  .car-dots button.on { background: var(--brand); transform: scale(1.3); }
+  .slide.dark .car-dots button { background: rgba(255,255,255,.28); }
+  .slide.dark .car-dots button.on { background: #B7ADFF; }
+  .car-count { font-size: 11.5px; font-weight: 700; letter-spacing: 1.2px; color: var(--muted); }
+
+  .bee-logo { width: 74px; height: 74px; border-radius: 22px; background: var(--brand-soft); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 30px -10px rgba(74,58,255,.5); }
+  .bee-logo img { width: 52px; height: 52px; }
+
+  .nav { position: fixed; right: 26px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 9px; z-index: 50; }
+  .nav button { width: 11px; height: 11px; border-radius: 50%; border: none; background: #D9D3EA; cursor: pointer; transition: all .2s; }
+  .nav button.on { background: var(--brand); transform: scale(1.35); }
+  .controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; z-index: 50; background: rgba(255,255,255,.85); backdrop-filter: blur(8px); border: 1px solid var(--border); padding: 8px 14px; border-radius: 999px; box-shadow: 0 8px 24px -10px rgba(43,33,96,.25); }
+  .controls button { border: none; background: var(--brand); color: #fff; width: 34px; height: 34px; border-radius: 50%; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .controls button:disabled { background: #D9D3EA; cursor: default; }
+  .controls .count { font-size: 12.5px; font-weight: 700; color: var(--muted); min-width: 40px; text-align: center; }
+
+  .foot-cta { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .btn-cta { background: var(--brand); color: #fff; border: none; font-weight: 700; font-size: 14px; padding: 13px 24px; border-radius: 999px; cursor: pointer; box-shadow: 0 12px 30px -10px rgba(74,58,255,.55); }
+  .chat-demo { background: #fff; border-radius: 18px; border: 1px solid var(--border); padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 18px 50px -18px rgba(43,33,96,.3); }
+  .chat-demo .b { padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.5; max-width: 82%; }
+  .chat-demo .b.you { align-self: flex-end; background: var(--brand); color: #fff; border-bottom-right-radius: 4px; }
+  .chat-demo .b.bot { align-self: flex-start; background: var(--cream); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+  .chat-demo .kpis { display: flex; gap: 8px; margin-top: 8px; }
+  .chat-demo .k { flex: 1; background: var(--brand-soft); border-radius: 10px; padding: 8px 10px; text-align: center; }
+  .chat-demo .k b { display: block; font-size: 15px; color: var(--brand); }
+  .chat-demo .k span { font-size: 9.5px; color: var(--muted); }
+  .chat-demo .cta-row { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+  .chat-demo .mini-btn { font-size: 11px; font-weight: 700; color: var(--brand); background: var(--brand-soft); border: none; padding: 7px 12px; border-radius: 999px; cursor: pointer; }
+  .bee-float { animation: floaty 3.2s ease-in-out infinite; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .ai-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 18px; }
+  .ai-card .q { font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .ai-card .a { font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); }
+  .ai-card .a b { color: var(--brand); }
+  .hl { color: var(--brand); }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- ============ 1 · TITLE ============ -->
+  <section class="slide dark active">
+    <div style="display:flex; flex-direction:column; flex:1; justify-content:center; align-items:center; text-align:center; gap: 26px;">
+      <div class="bee-logo bee-float" style="background:rgba(255,255,255,.1); width:96px; height:96px; border-radius:28px;"><img src="assets/skoobee-icon.png" style="width:68px;height:68px;" alt="SkooBee" /></div>
+      <div>
+        <h1 class="hero" style="font-size:88px;">SkooBee</h1>
+        <p style="font-family:'Playfair Display',serif; font-size:24px; color:#D9D4F5; margin-top:8px;">School ERP in your pocket.</p>
+      </div>
+      <p class="sub" style="color:#C9C1EA; text-align:center; max-width:720px;">One platform. Web depth. Mobile speed. An AI agent that answers from live school data.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:8px;">
+        <span class="pill" style="background:rgba(74,58,255,.25); color:#B7ADFF;">Admin</span>
+        <span class="pill" style="background:rgba(63,181,140,.2); color:#7FD9B5;">Teacher</span>
+        <span class="pill" style="background:rgba(255,92,56,.2); color:#FFB3A0;">Parent</span>
+        <span class="pill" style="background:rgba(217,119,6,.2); color:#FFC77D;">SkooBee AI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 · THE PROBLEM ============ -->
+  <section class="slide">
+    <span class="kicker">The problem</span>
+    <h2>School software runs on desktop, <span class="hl">but school life runs everywhere.</span></h2>
+    <p class="sub">Traditional ERPs stop at the school gate — teachers and parents are left out of the loop, and admin teams drown in manual work.</p>
+    <div class="grid3" style="margin-top:34px;">
+      <div class="card">
+        <div class="ic" style="background:var(--brand-soft); color:var(--brand);"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M14 9h1M14 13h1"/><path d="M10 21v-5h4v5"/></svg></div>
+        <h3>Admin</h3>
+        <p>Fees tracked in spreadsheets, reports compiled by hand, reminders chased one by one. No single, live view of the school.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--success-soft); color:var(--success);"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg></div>
+        <h3>Teacher</h3>
+        <p>Manual roll call eats minutes from every class. Homework and memos are scattered across WhatsApp groups and paper registers.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--coral-soft); color:var(--coral);"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Parent</h3>
+        <p>Out of the loop on attendance, fees and assignments. Missed payment dates, missed updates, and no easy way to ask.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 · WHAT WE'RE SOLVING ============ -->
+  <section class="slide">
+    <span class="kicker">Our objective</span>
+    <h2>What problems we're solving</h2>
+    <p class="sub">We're not porting the web to mobile — we're building the right layer for each role. Web for depth, mobile for speed, AI for answers.</p>
+    <div class="feat-tiles" style="margin-top:30px;">
+      <div class="feat"><span class="num">01</span><h3>Consolidate the chaos</h3><p>One source of truth for students, fees, attendance, schedules and payroll — replacing spreadsheets and scattered WhatsApp groups.</p></div>
+      <div class="feat"><span class="num">02</span><h3>Make admin frictionless</h3><p>Collection vs target at a glance, drillable charts, defaulters surfaced automatically, and follow-ups handled for you.</p></div>
+      <div class="feat"><span class="num">03</span><h3>Give teachers their time back</h3><p>Roll call in under two minutes, QR self check-in, homework broadcast to students in one tap, a memo after every class.</p></div>
+      <div class="feat"><span class="num">04</span><h3>Bring parents in the loop</h3><p>Live attendance, fee status and school updates on their phone — with one-tap acknowledgement so nothing is missed.</p></div>
+      <div class="feat"><span class="num">05</span><h3>Put an AI on every desk</h3><p>SkooBee AI answers questions from live data, generates reports and sends reminders — instead of menus and manual exports.</p></div>
+      <div class="feat"><span class="num">06</span><h3>Reach where life happens</h3><p>A mobile-first layer so admins, teachers and parents stay connected outside the office — not chained to a desktop browser.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 4 · VS TRADITIONAL ERPS ============ -->
+  <section class="slide">
+    <span class="kicker">Differentiation</span>
+    <h2>How we differ from traditional ERPs</h2>
+    <div style="flex:1; display:flex; align-items:center; margin-top:20px;">
+      <table class="tbl" style="background:#fff; border:1px solid var(--border); border-radius:18px; overflow:hidden;">
+        <tr><th style="width:24%;"> </th><th>Traditional ERP</th><th>SkooBee</th></tr>
+        <tr><td><b>Interaction</b></td><td class="x">Click through menus to find anything</td><td><b class="mark-good">Ask SkooBee AI in plain language</b></td></tr>
+        <tr><td><b>Reports</b></td><td class="x">Manually compile &amp; export spreadsheets</td><td><b class="mark-good">Auto-generated — scheduled &amp; on demand</b></td></tr>
+        <tr><td><b>Fee reminders</b></td><td class="x">Admin chases defaulters one by one</td><td><b class="mark-good">Auto reminders — smart, tracked, escalated</b></td></tr>
+        <tr><td><b>Experience</b></td><td class="x">Desktop-only, dense, admin-focused</td><td><b class="mark-good">Mobile-first, role-based, designed for teachers &amp; parents too</b></td></tr>
+        <tr><td><b>Communication</b></td><td class="x">Email blasts, no proof of receipt</td><td><b class="mark-good">Targeted broadcasts with parent acknowledgement</b></td></tr>
+        <tr><td><b>Mindset</b></td><td class="x">Records what happened</td><td><b class="mark-good">Predicts, prompts &amp; acts — a proactive partner</b></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 5 · TIME OPTIMIZATION ============ -->
+  <section class="slide">
+    <span class="kicker">Impact</span>
+    <h2>How each role gets its time back</h2>
+    <div class="timeline-grid" style="flex:1; align-items:center; margin-top:22px;">
+      <div class="tl">
+        <div class="role">Parent</div>
+        <div class="before"><b>Before:</b> Calls the school office to check attendance or fee status. Misses updates buried in group chats.</div>
+        <div class="after"><b>With SkooBee:</b> Live attendance &amp; fees on the phone. Acknowledges school updates in one tap.</div>
+        <div class="saved">~15 min per question → zero</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="tl">
+        <div class="role">Teacher</div>
+        <div class="before"><b>Before:</b> Paper roll call + manual register, homework shared across WhatsApp groups, no record.</div>
+        <div class="after"><b>With SkooBee:</b> Roll call in under 2 minutes, QR self check-in, one-tap broadcast to students &amp; parents.</div>
+        <div class="saved">~15 min/class → ~2 min</div>
+      </div>
+    </div>
+    <div class="tl" style="margin-top:18px;">
+      <div class="role">School / Admin</div>
+      <div class="before"><b>Before:</b> Fees &amp; reports in spreadsheets, reminders chased manually, no single live view.</div>
+      <div class="after"><b>With SkooBee:</b> Live collection vs target, drillable charts, defaulters auto-flagged, reminders auto-sent, reports auto-generated.</div>
+      <div class="saved">Days per month of manual reporting → minutes</div>
+    </div>
+  </section>
+
+  <!-- ============ 6 · AI-LED FEATURES ============ -->
+  <section class="slide dark">
+    <span class="kicker" style="color:#B7ADFF;">AI-led features · on the roadmap</span>
+    <h2>The auto-pilot for school operations</h2>
+    <div class="grid2" style="margin-top:28px;">
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="ai-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div class="q">Auto report generation</div>
+            <span class="badge-roadmap">Coming up</span>
+          </div>
+          <div class="a">Daily, weekly &amp; monthly <b>attendance, fee and payroll reports</b> — generated automatically and delivered on a schedule. Ask SkooBee AI for any report on demand.</div>
+        </div>
+        <div class="ai-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div class="q">Auto fee reminders</div>
+            <span class="badge-roadmap">Coming up</span>
+          </div>
+          <div class="a">Smart reminders to defaulters, <b>tracked &amp; acknowledged by parents</b>, escalations only when needed — no more manual chasing.</div>
+        </div>
+        <div class="ai-card">
+          <div class="q">Already live</div>
+          <div class="a">SkooBee AI answers from live data, targeted broadcasts with acknowledgement, QR attendance, drillable fee &amp; expenditure charts.</div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; align-items:center; min-height:0;">
+        <div class="shot" style="width:100%;"><img src="assets/web-fees.png" alt="Fees with auto reminders" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 · WEB FEATURES ============ -->
+  <section class="slide">
+    <span class="kicker">Web experience</span>
+    <h2>Deep work happens on the web</h2>
+    <div class="carousel web">
+      <button class="car-arrow prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="car-stage">
+        <div class="car-item active"><img src="assets/web-dashboard.png" alt="Admin dashboard" /><div class="car-cap">School pulse dashboard · live KPIs</div></div>
+        <div class="car-item"><img src="assets/web-fees.png" alt="Fees and finance" /><div class="car-cap">Fees &amp; finance · collection vs target</div></div>
+        <div class="car-item"><img src="assets/web-attendance.png" alt="Daily attendance" /><div class="car-cap">Daily attendance · class roll call &amp; alerts</div></div>
+        <div class="car-item"><img src="assets/web-schedule.png" alt="Teacher schedule" /><div class="car-cap">Teacher schedule · weekly timetable</div></div>
+        <div class="car-item"><img src="assets/web-payroll.png" alt="Payroll" /><div class="car-cap">Payroll · runs &amp; payslips</div></div>
+        <div class="car-item"><img src="assets/web-students.png" alt="Students" /><div class="car-cap">Students · enrolment, fees &amp; attendance</div></div>
+      </div>
+      <button class="car-arrow next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="car-foot"><div class="car-dots"></div><span class="car-count">1 / 6</span></div>
+  </section>
+
+  <!-- ============ 8 · MOBILE FEATURES ============ -->
+  <section class="slide dark">
+    <span class="kicker" style="color:#B7ADFF;">Mobile experience</span>
+    <h2>Fast actions happen on mobile</h2>
+    <div class="carousel mob">
+      <button class="car-arrow prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="car-stage">
+        <div class="car-item active"><img src="assets/mobile-admin.png" alt="Admin home" /><div class="car-cap">Admin home · charts</div></div>
+        <div class="car-item"><img src="assets/mobile-teacher.png" alt="Teacher home" /><div class="car-cap">Teacher · my day</div></div>
+        <div class="car-item"><img src="assets/mobile-tatt.png" alt="Roll call" /><div class="car-cap">Roll call · mark attendance</div></div>
+        <div class="car-item"><img src="assets/mobile-tqr.png" alt="QR check-in" /><div class="car-cap">QR self check-in</div></div>
+        <div class="car-item"><img src="assets/mobile-tbcast.png" alt="Broadcast" /><div class="car-cap">Broadcast · to students</div></div>
+        <div class="car-item"><img src="assets/mobile-parent.png" alt="Parent home" /><div class="car-cap">Parent · my child</div></div>
+        <div class="car-item"><img src="assets/mobile-abcast.png" alt="Admin broadcast" /><div class="car-cap">Broadcast · to parents</div></div>
+        <div class="car-item"><img src="assets/mobile-agent.png" alt="SkooBee AI" /><div class="car-cap">SkooBee AI agent</div></div>
+      </div>
+      <button class="car-arrow next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="car-foot"><div class="car-dots"></div><span class="car-count">1 / 8</span></div>
+  </section>
+
+  <!-- ============ 9 · THE HERO (FINAL) ============ -->
+  <section class="slide dark">
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+      <span class="kicker" style="color:#B7ADFF; margin-bottom:0;">The hero product</span>
+      <span class="tag-coming dark">Coming up · future release</span>
+    </div>
+    <h2>SkooBee AI — <span style="color:#FFC77D;">ask, don't click.</span></h2>
+    <div class="grid2" style="margin-top:22px; flex:1;">
+      <div style="display:flex; justify-content:center; align-items:center; min-height:0;">
+        <div class="phone" style="height:430px;"><img src="assets/mobile-agent.png" alt="SkooBee AI chat" /></div>
+      </div>
+      <div>
+        <div class="chat-demo">
+          <div class="b you">How is attendance this week?</div>
+          <div class="b bot">
+            This week is at <b>94.8%</b>, up 0.6% vs last week.
+            <div class="kpis">
+              <div class="k"><b>94.8%</b><span>Daily</span></div>
+              <div class="k"><b>96.4%</b><span>Upper</span></div>
+              <div class="k"><b>93.1%</b><span>Lower</span></div>
+            </div>
+            <div class="cta-row">
+              <button class="mini-btn">Per-grade breakdown</button>
+              <button class="mini-btn">Notify parents</button>
+            </div>
+          </div>
+        </div>
+        <ul style="margin-top:20px; display:flex; flex-direction:column; gap:12px; list-style:none;">
+          <li style="display:flex; gap:12px; font-size:14.5px; color:#E6E2F8;"><span style="color:#3FB58C; font-weight:800;">✓</span>Answers from <b>live school data</b> — attendance, fees, grades, schedules</li>
+          <li style="display:flex; gap:12px; font-size:14.5px; color:#E6E2F8;"><span style="color:#3FB58C; font-weight:800;">✓</span>Proactive offers — flags defaulters, suggests notifying parents</li>
+          <li style="display:flex; gap:12px; font-size:14.5px; color:#E6E2F8;"><span style="color:#3FB58C; font-weight:800;">✓</span>One tap from the centre of every screen — for every role</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-cta" style="margin-top:22px;">
+      <p class="sub" style="margin:0; max-width:460px;">Ready to see it live? The web console and mobile apps ship today — SkooBee AI lands next.</p>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="btn-cta">Book a demo</span>
+        <span class="pill" style="background:rgba(74,58,255,.25); color:#B7ADFF;">Web · Mobile · AI</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- navigation -->
+<div class="nav" id="dots"></div>
+<div class="controls">
+  <button id="prev" aria-label="Previous">‹</button>
+  <span class="count" id="count">1 / 10</span>
+  <button id="next" aria-label="Next">›</button>
+</div>
+
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  const dotsWrap = document.getElementById('dots');
+  let cur = 0;
+
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.onclick = () => go(i);
+    dotsWrap.appendChild(b);
+  });
+  const dots = [...dotsWrap.children];
+
+  function go(i) {
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, k) => s.classList.toggle('active', k === cur));
+    dots.forEach((d, k) => d.classList.toggle('on', k === cur));
+    document.getElementById('count').textContent = `${cur + 1} / ${slides.length}`;
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === slides.length - 1;
+  }
+  document.getElementById('prev').onclick = () => go(cur - 1);
+  document.getElementById('next').onclick = () => go(cur + 1);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End') go(slides.length - 1);
+  });
+
+  go(0);
+
+  // Carousels (web / mobile feature slides)
+  document.querySelectorAll('.carousel').forEach((car) => {
+    const items = [...car.querySelectorAll('.car-item')];
+    const section = car.closest('section');
+    const dotsWrap = section.querySelector('.car-dots');
+    const countEl = section.querySelector('.car-count');
+    let cur = 0;
+
+    items.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.onclick = () => carGo(i);
+      dotsWrap.appendChild(d);
+    });
+    const dots = [...dotsWrap.children];
+
+    function render() {
+      items.forEach((it, k) => it.classList.toggle('active', k === cur));
+      dots.forEach((d, k) => d.classList.toggle('on', k === cur));
+      if (countEl) countEl.textContent = `${cur + 1} / ${items.length}`;
+    }
+    function carGo(i) {
+      cur = (i + items.length) % items.length;
+      render();
+    }
+    car.querySelector('.prev').onclick = () => carGo(cur - 1);
+    car.querySelector('.next').onclick = () => carGo(cur + 1);
+    render();
+  });
+</script>
+</body>
+</html>

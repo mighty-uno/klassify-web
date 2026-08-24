@@ -27,7 +27,7 @@ const jsonLd = [
     operatingSystem: "All",
     applicationCategory: "EducationalApplication, BusinessApplication",
     description:
-      "Klassify is the AI-powered school ERP that gives educators time back. Streamline attendance, billing, results, and day-to-day operations.",
+      "SkooBee is the AI-powered school ERP that gives educators time back. Streamline attendance, billing, results, and day-to-day operations.",
     offers: {
       "@type": "Offer",
       price: "0.00",
@@ -45,7 +45,7 @@ const jsonLd = [
     mainEntity: [
       {
         "@type": "Question",
-        name: "How long does it take to set up Klassify for our school?",
+        name: "How long does it take to set up SkooBee for our school?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Most schools go live in under two weeks. Our onboarding team helps import classes, staff and students, and trains your team so day one feels familiar."
@@ -56,7 +56,7 @@ const jsonLd = [
         name: "Does the voice attendance work for large classrooms?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Teachers read out names and Klassify captures the roll call in about three seconds per student, flagging absentees and notifying parents instantly — even for full-size classrooms."
+          text: "Yes. Teachers read out names and SkooBee captures the roll call in about three seconds per student, flagging absentees and notifying parents instantly — even for full-size classrooms."
         }
       },
       {
@@ -64,7 +64,7 @@ const jsonLd = [
         name: "Is our student and parent data secure?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Absolutely. Klassify follows standard security practices for education data, including encrypted storage and access controls, so only authorised staff can view records. See our Privacy Policy for full details."
+          text: "Absolutely. SkooBee follows standard security practices for education data, including encrypted storage and access controls, so only authorised staff can view records. See our Privacy Policy for full details."
         }
       },
       {
@@ -72,20 +72,20 @@ const jsonLd = [
         name: "Will our office staff need to change how they work?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. Klassify is designed around the workflows schools already follow, so teams adopt it quickly. The AI quietly automates the repetitive parts while people keep their familiar routines."
+          text: "No. SkooBee is designed around the workflows schools already follow, so teams adopt it quickly. The AI quietly automates the repetitive parts while people keep their familiar routines."
         }
       },
       {
         "@type": "Question",
-        name: "Can parents use Klassify on their phones?",
+        name: "Can parents use SkooBee on their phones?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Parents get a mobile-friendly portal with daily attendance updates, fee status and progress insights — no separate app installation required."
+          text: "Yes. Parents get mobile app and mobile-friendly web access with daily attendance updates, fee status and progress insights."
         }
       },
       {
         "@type": "Question",
-        name: "What does Klassify cost?",
+        name: "What does SkooBee cost?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Pricing is per student, per month and depends on your school's size and selected plan. Book a demo and we'll share a clear quote tailored to your school."
@@ -94,6 +94,7 @@ const jsonLd = [
     ]
   }
 ];
+
 
 export default function HomePage() {
   return (

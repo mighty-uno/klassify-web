@@ -9,8 +9,8 @@ const columns = [
     links: [
       { label: "Attendance", href: "/#product" },
       { label: "Fees & billing", href: "/#product" },
-      { label: "Results & reports", href: "/#product" },
-      { label: "Oppa — learning assistant", href: "/#oppa" },
+      { label: "System Slides", href: "/slides" },
+      { label: "Oppa — SkooBee AI", href: "/#oppa" },
       { label: "AI for schools", href: "/#ai" },
       { label: "Pricing", href: "/#pricing" }
     ]
@@ -18,7 +18,7 @@ const columns = [
   {
     title: "School",
     links: [
-      { label: "Why Klassify", href: "/#why" },
+      { label: "Why SkooBee", href: "/#why" },
       { label: "How it works", href: "/#how" },
       { label: "Built for every role", href: "/#roles" },
       { label: "FAQ", href: "/#faq" }
@@ -27,7 +27,7 @@ const columns = [
   {
     title: "Company",
     links: [
-      { label: "About Klassify", href: "/#why" },
+      { label: "About SkooBee", href: "/#why" },
       { label: "Contact us", href: "/contact" },
       { label: "Book a demo", href: "/contact" }
     ]
@@ -49,7 +49,7 @@ export function Footer() {
         <div className="col-span-2 flex flex-col gap-4">
           <Logo />
           <p className="max-w-xs text-sm leading-6 text-muted">
-            {siteConfig.tagline} Klassify is the AI-powered school OS trusted by
+            {siteConfig.tagline} SkooBee is the AI-powered school ERP trusted by
             schools across India.
           </p>
           <a
@@ -83,7 +83,7 @@ export function Footer() {
               © {siteConfig.foundingYear} {siteConfig.companyName}. All rights reserved.
             </p>
             <p className="text-sm text-muted-2">
-              Klassify is built by {siteConfig.companyName}.
+              SkooBee is built by {siteConfig.companyName}.
             </p>
           </div>
           <div className="flex items-center gap-3">

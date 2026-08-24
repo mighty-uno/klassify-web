@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SkooBee — Web App Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #EDF0F5; }
+  .wrap { width: 1440px; margin: 0 auto; }
+  .screen { width: 1440px; height: 900px; background: #F4F6FA; position: relative; overflow: hidden; border-bottom: 2px dashed #CBD2DC; }
+  .label { position: absolute; top: 14px; left: 16px; z-index: 50; background: #2B2160; color: #fff; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; letter-spacing: .3px; }
+
+  /* ---- app shell ---- */
+  .app { display: flex; height: 100%; }
+  .sidebar { width: 260px; background: #fff; border-right: 1px solid #E7E3F2; display: flex; flex-direction: column; flex-shrink: 0; }
+  .brand { height: 72px; display: flex; align-items: center; padding: 0 28px; border-bottom: 1px solid #F1EEF8; gap: 12px; }
+  .brand-logo { width: 32px; height: 32px; border-radius: 10px; background: #4A3AFF; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 17px; }
+  .brand-name { font-weight: 700; font-size: 19px; letter-spacing: -.3px; color: #2B2160; }
+  nav.side-nav { flex: 1; padding: 26px 16px; overflow: hidden; display: flex; flex-direction: column; gap: 26px; }
+  .nav-sec p { padding: 0 12px; font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: #8F87AD; margin-bottom: 8px; }
+  .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; font-size: 13.5px; color: #5A5378; margin-bottom: 2px; position: relative; }
+  .nav-item.active { background: #F0EEFF; color: #4A3AFF; font-weight: 600; }
+  .nav-item.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 20px; background: #4A3AFF; border-radius: 0 4px 4px 0; }
+  .nav-item svg { width: 17px; height: 17px; }
+  .side-foot { padding: 14px 16px; border-top: 1px solid #F1EEF8; font-size: 11px; color: #8F87AD; text-align: center; }
+  .profile { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #FAF9FE; margin-bottom: 6px; }
+  .profile .p-av { width: 34px; height: 34px; border-radius: 50%; background: #4A3AFF; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+  .profile .p-t b { font-size: 12.5px; color: #2B2160; display: block; }
+  .profile .p-t span { font-size: 11px; color: #8F87AD; }
+
+  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .topbar { height: 72px; background: #fff; border-bottom: 1px solid #E7E3F2; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+  .topbar .t-title h1 { font-size: 20px; font-weight: 700; color: #2B2160; letter-spacing: -.3px; }
+  .topbar .t-title p { font-size: 12px; color: #8F87AD; }
+  .topbar .t-actions { display: flex; align-items: center; gap: 14px; }
+  .search { display: flex; align-items: center; gap: 8px; background: #F4F6FA; border-radius: 10px; padding: 9px 14px; width: 240px; color: #8F87AD; font-size: 13px; }
+  .search svg { width: 15px; height: 15px; }
+  .bell { position: relative; width: 38px; height: 38px; background: #F4F6FA; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #5A5378; }
+  .bell svg { width: 17px; height: 17px; }
+  .bell::after { content: ''; position: absolute; top: 9px; right: 10px; width: 7px; height: 7px; background: #FF5C38; border-radius: 50%; border: 2px solid #fff; }
+  .av { width: 38px; height: 38px; border-radius: 50%; background: #4A3AFF; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+
+  .content { flex: 1; padding: 26px 28px; overflow: hidden; display: flex; flex-direction: column; gap: 22px; }
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .kpi { background: #fff; border-radius: 16px; padding: 20px; border: 1px solid #F1EEF8; }
+  .kpi .k-head { display: flex; align-items: center; justify-content: space-between; }
+  .kpi .k-label { font-size: 12px; font-weight: 600; color: #8F87AD; }
+  .kpi .k-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+  .kpi .k-icon svg { width: 17px; height: 17px; }
+  .kpi .k-val { font-size: 28px; font-weight: 800; color: #2B2160; margin-top: 8px; letter-spacing: -1px; }
+  .kpi .k-sub { font-size: 12px; color: #8F87AD; }
+  .kpi .k-foot { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; margin-top: 10px; padding: 3px 9px; border-radius: 999px; }
+  .kpi .k-foot svg { width: 12px; height: 12px; }
+  .up { color: #3FB58C; background: #E7F7F0; }
+  .down { color: #FF5C38; background: #FFEDE7; }
+  .steady { color: #8F87AD; background: #F4F6FA; }
+
+  .chart-row { display: grid; grid-template-columns: 1.5fr 1fr; gap: 18px; }
+  .card { background: #fff; border-radius: 16px; border: 1px solid #F1EEF8; padding: 20px; }
+  .card h3 { font-size: 14.5px; font-weight: 700; color: #2B2160; }
+  .card .c-sub { font-size: 12px; color: #8F87AD; }
+  .card .c-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .chip { font-size: 11.5px; font-weight: 600; color: #4A3AFF; background: #F0EEFF; padding: 5px 11px; border-radius: 999px; }
+  .bar-v { display: flex; align-items: flex-end; gap: 10px; height: 150px; padding-top: 8px; }
+  .bar-v .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar-v .col .bars { display: flex; align-items: flex-end; gap: 4px; width: 100%; height: 118px; }
+  .bar-v .col .bars i { width: 42%; border-radius: 5px 5px 2px 2px; }
+  .bar-v .col span { font-size: 10.5px; color: #8F87AD; }
+  .legend { display: flex; gap: 16px; font-size: 11.5px; color: #5A5378; margin-top: 12px; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 5px; }
+
+  .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; }
+  table.grid { width: 100%; border-collapse: collapse; }
+  table.grid th { text-align: left; font-size: 11px; font-weight: 700; color: #8F87AD; text-transform: uppercase; letter-spacing: .5px; padding: 8px 10px; border-bottom: 1px solid #F1EEF8; }
+  table.grid td { padding: 11px 10px; font-size: 12.5px; color: #3A3550; border-bottom: 1px solid #F6F4FC; }
+  table.grid td b { color: #2B2160; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+  .badge i { width: 6px; height: 6px; border-radius: 50%; }
+  .b-paid { color: #3FB58C; background: #E7F7F0; } .b-paid i { background: #3FB58C; }
+  .b-partial { color: #D97706; background: #FEF3E2; } .b-partial i { background: #D97706; }
+  .b-due { color: #FF5C38; background: #FFEDE7; } .b-due i { background: #FF5C38; }
+  .b-overdue { color: #B91C1C; background: #FDECEC; } .b-overdue i { background: #B91C1C; }
+  .b-ok { color: #3FB58C; background: #E7F7F0; } .b-ok i { background: #3FB58C; }
+  .b-paidx { color: #D97706; background: #FEF3E2; } .b-paidx i { background: #D97706; }
+
+  .bar-h { display: flex; flex-direction: column; gap: 14px; }
+  .bar-h .row { display: grid; grid-template-columns: 1fr 3fr 1fr; align-items: center; gap: 10px; font-size: 12px; color: #5A5378; }
+  .bar-h .track { height: 8px; background: #F1EEF8; border-radius: 99px; overflow: hidden; }
+  .bar-h .track i { display: block; height: 100%; border-radius: 99px; }
+  .bar-h .row b { text-align: right; font-size: 12.5px; color: #2B2160; }
+
+  .week-grid { display: grid; grid-template-columns: 100px repeat(5, 1fr); gap: 8px; }
+  .week-grid .day-h { font-size: 12px; font-weight: 700; color: #8F87AD; text-align: center; padding: 8px; }
+  .week-grid .period { font-size: 11.5px; color: #8F87AD; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; }
+  .class-box { background: #F0EEFF; border-left: 3px solid #4A3AFF; border-radius: 8px; padding: 7px 10px; font-size: 11.5px; color: #2B2160; margin-bottom: 6px; }
+  .class-box b { display: block; font-size: 11.5px; }
+  .class-box span { color: #8F87AD; font-size: 10.5px; }
+  .class-box.orange { background: #FEF3E2; border-left-color: #D97706; }
+  .class-box.green { background: #E7F7F0; border-left-color: #3FB58C; }
+  .class-box.coral { background: #FFEDE7; border-left-color: #FF5C38; }
+
+  .row-flex { display: flex; align-items: center; gap: 14px; }
+  .btn { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; padding: 9px 15px; border-radius: 10px; border: none; cursor: pointer; }
+  .btn svg { width: 14px; height: 14px; }
+  .btn-primary { background: #4A3AFF; color: #fff; }
+  .btn-ghost { background: #F4F6FA; color: #5A5378; }
+  .btn-success { background: #3FB58C; color: #fff; }
+  .btn-warn { background: #D97706; color: #fff; }
+  .seg { display: inline-flex; background: #F1EEF8; border-radius: 10px; padding: 4px; gap: 2px; }
+  .seg button { border: none; background: transparent; font-size: 12px; font-weight: 600; color: #8F87AD; padding: 7px 14px; border-radius: 8px; cursor: pointer; }
+  .seg button.on { background: #fff; color: #4A3AFF; box-shadow: 0 1px 3px rgba(43,33,96,.12); }
+  .avs { display: flex; }
+  .avs i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; margin-left: -6px; display: inline-block; background: #4A3AFF; }
+  .att-today { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .att-stat { background: #fff; border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+  .att-stat .dot { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; }
+  .att-stat .t b { font-size: 16px; color: #2B2160; display: block; }
+  .att-stat .t span { font-size: 11.5px; color: #8F87AD; }
+  .pct { font-size: 26px; font-weight: 800; color: #2B2160; letter-spacing: -1px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ 1. DASHBOARD ============ -->
+  <section class="screen" data-shot="web-dashboard">
+    <div class="label">Web · Admin Dashboard</div>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-logo">B</div><span class="brand-name">SkooBee</span></div>
+        <nav class="side-nav">
+          <div class="nav-sec"><p>Operations</p>
+            <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Students</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Faculty</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l9-4-9-4-9 4z"/><path d="M4 13v4c0 1.5 3.6 3 8 3s8-1.5 8-3v-4"/></svg>Admissions</div>
+          </div>
+          <div class="nav-sec"><p>Administration</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>Fees &amp; Finance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payroll</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Academic Calendar</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 16l2 2 4-4"/></svg>Daily Attendance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Teacher Schedule</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13l-1 3 1 3h-13"/><path d="M12 5v14"/></svg>Promotion</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l8-4-2 8 8-4-6 8 4 2-8 4 2-8-8 4z"/></svg>Transport</div>
+          </div>
+        </nav>
+        <div class="side-foot">
+          <div class="profile"><div class="p-av">OP</div><div class="p-t"><b>Owner</b><span>Platform Owner</span></div></div>
+          <div style="padding:6px 12px; color:#8F87AD;">Log out</div>
+          <p style="margin-top:4px;">(C) 2026 SkooBee</p>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="t-title"><h1>Dashboard</h1><p>Monday, 24 Aug 2026 · Academic Year 2025–26</p></div>
+          <div class="t-actions">
+            <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>Search students, staff…</div>
+            <div class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+            <div class="av">OP</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="kpi-row">
+            <div class="kpi"><div class="k-head"><span class="k-label">Total Enrollment</span><span class="k-icon" style="background:#F0EEFF;color:#4A3AFF;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></div><div class="k-val">2,482</div><div class="k-sub">students</div><span class="k-foot up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>+4.2% vs last term</span></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Faculty</span><span class="k-icon" style="background:#F0EEFF;color:#4A3AFF;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span></div><div class="k-val">148</div><div class="k-sub">teaching staff</div><span class="k-foot steady">Steady · 0 turnover</span></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Revenue</span><span class="k-icon" style="background:#E7F7F0;color:#3FB58C;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M15 9l-3-3-3 3"/></svg></span></div><div class="k-val">$1.25M</div><div class="k-sub">92% of budget</div><div class="bar-h" style="margin-top:8px;"><div class="track"><i style="width:92%;background:#3FB58C;"></i></div></div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Attendance</span><span class="k-icon" style="background:#FFEDE7;color:#FF5C38;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg></span></div><div class="k-val">94.8%</div><div class="k-sub">daily attendance</div><span class="k-foot down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7l10 10"/><path d="M17 7v10H7"/></svg>−0.6% vs yesterday</span></div>
+          </div>
+          <div class="chart-row">
+            <div class="card">
+              <div class="c-head"><div><h3>Attendance Trend</h3><p class="c-sub">Daily % · last 14 days</p></div><span class="chip">All grades</span></div>
+              <div class="bar-v">
+                <div class="col"><div class="bars"><i style="height:70%;background:#4A3AFF;"></i></div><span>11</span></div>
+                <div class="col"><div class="bars"><i style="height:88%;background:#4A3AFF;"></i></div><span>12</span></div>
+                <div class="col"><div class="bars"><i style="height:78%;background:#4A3AFF;"></i></div><span>13</span></div>
+                <div class="col"><div class="bars"><i style="height:95%;background:#4A3AFF;"></i></div><span>14</span></div>
+                <div class="col"><div class="bars"><i style="height:84%;background:#4A3AFF;"></i></div><span>15</span></div>
+                <div class="col"><div class="bars"><i style="height:92%;background:#3FB58C;"></i></div><span>16</span></div>
+                <div class="col"><div class="bars"><i style="height:81%;background:#3FB58C;"></i></div><span>17</span></div>
+                <div class="col"><div class="bars"><i style="height:97%;background:#3FB58C;"></i></div><span>18</span></div>
+                <div class="col"><div class="bars"><i style="height:89%;background:#3FB58C;"></i></div><span>19</span></div>
+                <div class="col"><div class="bars"><i style="height:76%;background:#3FB58C;"></i></div><span>20</span></div>
+                <div class="col"><div class="bars"><i style="height:94%;background:#FFD04F;"></i></div><span>21</span></div>
+                <div class="col"><div class="bars"><i style="height:93%;background:#FFD04F;"></i></div><span>22</span></div>
+                <div class="col"><div class="bars"><i style="height:90%;background:#FFD04F;"></i></div><span>23</span></div>
+                <div class="col"><div class="bars"><i style="height:95%;background:#3FB58C;"></i></div><span>24</span></div>
+              </div>
+              <div class="legend"><span><i style="background:#4A3AFF;"></i>Last week</span><span><i style="background:#3FB58C;"></i>This week</span><span><i style="background:#FFD04F;"></i>Today</span></div>
+            </div>
+            <div class="card">
+              <div class="c-head"><div><h3>Fee Collection</h3><p class="c-sub">vs target · this term</p></div><span class="chip">$1.25M / $1.36M</span></div>
+              <div class="bar-h">
+                <div class="row"><span>Grade 9</span><div class="track"><i style="width:88%;background:#4A3AFF;"></i></div><b>$218K</b></div>
+                <div class="row"><span>Grade 10</span><div class="track"><i style="width:79%;background:#4A3AFF;"></i></div><b>$196K</b></div>
+                <div class="row"><span>Grade 11</span><div class="track"><i style="width:64%;background:#D97706;"></i></div><b>$158K</b></div>
+                <div class="row"><span>Grade 12</span><div class="track"><i style="width:91%;background:#3FB58C;"></i></div><b>$226K</b></div>
+              </div>
+              <div style="margin-top:14px;font-size:12px;color:#8F87AD;">7% below target · <b style="color:#FF5C38;">12 defaulters</b> this month</div>
+            </div>
+          </div>
+          <div class="split">
+            <div class="card">
+              <div class="c-head"><div><h3>Recent Payments</h3></div><a style="font-size:12px;color:#4A3AFF;font-weight:600;">View all</a></div>
+              <table class="grid">
+                <tr><th>Student</th><th>Grade</th><th>Item</th><th>Amount</th><th>Status</th></tr>
+                <tr><td><b>Aarav Patel</b></td><td>11-B</td><td>Term 2 Fees</td><td>$1,200</td><td><span class="badge b-paid"><i></i>Paid</span></td></tr>
+                <tr><td><b>Meera Iyer</b></td><td>9-A</td><td>Transport</td><td>$450</td><td><span class="badge b-paid"><i></i>Paid</span></td></tr>
+                <tr><td><b>Kabir Singh</b></td><td>12-C</td><td>Term 2 Fees</td><td>$1,350</td><td><span class="badge b-partial"><i></i>Partial</span></td></tr>
+                <tr><td><b>Ananya Rao</b></td><td>10-B</td><td>Activity Fee</td><td>$220</td><td><span class="badge b-due"><i></i>Due</span></td></tr>
+              </table>
+            </div>
+            <div class="card">
+              <div class="c-head"><div><h3>Today</h3><p class="c-sub">24 Aug 2026</p></div></div>
+              <div style="display:flex;flex-direction:column;gap:12px;font-size:12.5px;color:#3A3550;">
+                <div style="display:flex;justify-content:space-between;"><span>Present</span><b style="color:#3FB58C;">2,354</b></div>
+                <div style="display:flex;justify-content:space-between;"><span>Absent</span><b style="color:#FF5C38;">76</b></div>
+                <div style="display:flex;justify-content:space-between;"><span>Late</span><b style="color:#D97706;">39</b></div>
+                <div style="display:flex;justify-content:space-between;"><span>Excused</span><b style="color:#8F87AD;">13</b></div>
+              </div>
+              <div style="margin-top:16px;background:#FAF9FE;border-radius:12px;padding:12px;font-size:12px;color:#5A5378;">3 classes below 90% attendance today — <b style="color:#FF5C38;">review now</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. FEES & FINANCE ============ -->
+  <section class="screen" data-shot="web-fees">
+    <div class="label">Web · Fees &amp; Finance</div>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-logo">B</div><span class="brand-name">SkooBee</span></div>
+        <nav class="side-nav">
+          <div class="nav-sec"><p>Operations</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Students</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Faculty</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l9-4-9-4-9 4z"/><path d="M4 13v4c0 1.5 3.6 3 8 3s8-1.5 8-3v-4"/></svg>Admissions</div>
+          </div>
+          <div class="nav-sec"><p>Administration</p>
+            <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>Fees &amp; Finance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payroll</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Academic Calendar</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 16l2 2 4-4"/></svg>Daily Attendance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Teacher Schedule</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13l-1 3 1 3h-13"/><path d="M12 5v14"/></svg>Promotion</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l8-4-2 8 8-4-6 8 4 2-8 4 2-8-8 4z"/></svg>Transport</div>
+          </div>
+        </nav>
+        <div class="side-foot">
+          <div class="profile"><div class="p-av">OP</div><div class="p-t"><b>Owner</b><span>Platform Owner</span></div></div>
+          <div style="padding:6px 12px; color:#8F87AD;">Log out</div>
+          <p style="margin-top:4px;">(C) 2026 SkooBee</p>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="t-title"><h1>Fees &amp; Finance</h1><p>Overview · Invoices · Structures · Concessions · Defaulters</p></div>
+          <div class="t-actions">
+            <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>Search invoices…</div>
+            <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>New Invoice</button>
+            <div class="av">OP</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="kpi-row">
+            <div class="kpi"><div class="k-head"><span class="k-label">Total Fees</span></div><div class="k-val">$1.36M</div><div class="k-sub">this term</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Collected</span></div><div class="k-val" style="color:#3FB58C;">$1.25M</div><div class="k-sub">91.8% collected</div><div class="bar-h" style="margin-top:8px;"><div class="track"><i style="width:92%;background:#3FB58C;"></i></div></div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Outstanding</span></div><div class="k-val" style="color:#D97706;">$112K</div><div class="k-sub">87 invoices</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Defaulters</span></div><div class="k-val" style="color:#FF5C38;">24</div><div class="k-sub">over 30 days due</div></div>
+          </div>
+          <div class="chart-row">
+            <div class="card">
+              <div class="c-head"><div><h3>Collection vs Target</h3><p class="c-sub">By grade · this term</p></div><div class="seg"><button class="on">All</button><button>By Grade</button><button>By Section</button></div></div>
+              <div class="bar-v">
+                <div class="col"><div class="bars"><i style="height:88%;background:#4A3AFF;"></i></div><span>9</span></div>
+                <div class="col"><div class="bars"><i style="height:79%;background:#4A3AFF;"></i></div><span>10</span></div>
+                <div class="col"><div class="bars"><i style="height:64%;background:#D97706;"></i></div><span>11</span></div>
+                <div class="col"><div class="bars"><i style="height:91%;background:#3FB58C;"></i></div><span>12</span></div>
+              </div>
+              <div class="legend"><span><i style="background:#4A3AFF;"></i>Received</span><span><i style="background:#E7E4F8;"></i>Target</span></div>
+            </div>
+            <div class="card">
+              <div class="c-head"><div><h3>Overdue &amp; Auto Reminders</h3><p class="c-sub">SkooBee AI follows up automatically</p></div><span class="chip">Scheduled · daily 9am</span></div>
+              <div style="display:flex;flex-direction:column;gap:12px;font-size:12.5px;color:#3A3550;">
+                <div style="display:flex;justify-content:space-between;"><span>Auto reminders sent (this week)</span><b style="color:#4A3AFF;">38</b></div>
+                <div style="display:flex;justify-content:space-between;"><span>Parents acknowledged</span><b style="color:#3FB58C;">29</b></div>
+                <div style="display:flex;justify-content:space-between;"><span>Payments after reminder</span><b style="color:#3FB58C;">17</b></div>
+                <div style="display:flex;justify-content:space-between;"><span>Escalated to admin</span><b style="color:#FF5C38;">6</b></div>
+              </div>
+              <div style="margin-top:16px;background:#F0EEFF;border-radius:12px;padding:12px;font-size:12px;color:#5A5378;"><b style="color:#4A3AFF;">SkooBee AI:</b> "12 Grade-11 students have fees overdue. Want me to send reminders to their parents?"</div>
+            </div>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="c-head"><div><h3>Invoices</h3></div><a style="font-size:12px;color:#4A3AFF;font-weight:600;">Export CSV</a></div>
+            <table class="grid">
+              <tr><th>Invoice</th><th>Student</th><th>Grade</th><th>Item</th><th>Amount</th><th>Due</th><th>Status</th></tr>
+              <tr><td><b>INV-2041</b></td><td>Aarav Patel</td><td>11-B</td><td>Term 2 Fees</td><td>$1,200</td><td>Aug 30</td><td><span class="badge b-paid"><i></i>Paid</span></td></tr>
+              <tr><td><b>INV-2040</b></td><td>Kabir Singh</td><td>12-C</td><td>Term 2 Fees</td><td>$1,350</td><td>Aug 30</td><td><span class="badge b-partial"><i></i>Partial</span></td></tr>
+              <tr><td><b>INV-2038</b></td><td>Ananya Rao</td><td>10-B</td><td>Activity Fee</td><td>$220</td><td>Aug 28</td><td><span class="badge b-due"><i></i>Due</span></td></tr>
+              <tr><td><b>INV-2035</b></td><td>Rohan Verma</td><td>11-A</td><td>Term 2 Fees</td><td>$1,200</td><td>Aug 25</td><td><span class="badge b-overdue"><i></i>Overdue</span></td></tr>
+              <tr><td><b>INV-2030</b></td><td>Diya Nair</td><td>9-C</td><td>Transport</td><td>$450</td><td>Aug 22</td><td><span class="badge b-overdue"><i></i>Overdue</span></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. DAILY ATTENDANCE ============ -->
+  <section class="screen" data-shot="web-attendance">
+    <div class="label">Web · Daily Attendance</div>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-logo">B</div><span class="brand-name">SkooBee</span></div>
+        <nav class="side-nav">
+          <div class="nav-sec"><p>Operations</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Students</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Faculty</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l9-4-9-4-9 4z"/><path d="M4 13v4c0 1.5 3.6 3 8 3s8-1.5 8-3v-4"/></svg>Admissions</div>
+          </div>
+          <div class="nav-sec"><p>Administration</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>Fees &amp; Finance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payroll</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Academic Calendar</div>
+            <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 16l2 2 4-4"/></svg>Daily Attendance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Teacher Schedule</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13l-1 3 1 3h-13"/><path d="M12 5v14"/></svg>Promotion</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l8-4-2 8 8-4-6 8 4 2-8 4 2-8-8 4z"/></svg>Transport</div>
+          </div>
+        </nav>
+        <div class="side-foot">
+          <div class="profile"><div class="p-av">OP</div><div class="p-t"><b>Owner</b><span>Platform Owner</span></div></div>
+          <div style="padding:6px 12px; color:#8F87AD;">Log out</div>
+          <p style="margin-top:4px;">(C) 2026 SkooBee</p>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="t-title"><h1>Daily Attendance</h1><p>Monday, 24 Aug 2026</p></div>
+          <div class="t-actions">
+            <div class="seg"><button class="on">Today</button><button>This week</button><button>This month</button></div>
+            <button class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>Export report</button>
+            <div class="av">OP</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="att-today">
+            <div class="att-stat"><div class="dot" style="background:#E7F7F0;color:#3FB58C;">✓</div><div class="t"><b>2,354</b><span>Present</span></div></div>
+            <div class="att-stat"><div class="dot" style="background:#FFEDE7;color:#FF5C38;">✕</div><div class="t"><b>76</b><span>Absent</span></div></div>
+            <div class="att-stat"><div class="dot" style="background:#FEF3E2;color:#D97706;">!</div><div class="t"><b>39</b><span>Late</span></div></div>
+            <div class="att-stat"><div class="dot" style="background:#F4F6FA;color:#8F87AD;">–</div><div class="t"><b>13</b><span>Excused</span></div></div>
+          </div>
+          <div class="chart-row">
+            <div class="card">
+              <div class="c-head"><div><h3>Attendance by Class</h3><p class="c-sub">Today · 24 Aug</p></div><span class="chip" style="background:#E7F7F0;color:#3FB58C;">Overall 94.8%</span></div>
+              <div class="bar-v">
+                <div class="col"><div class="bars"><i style="height:96%;background:#3FB58C;"></i></div><span>9-A</span></div>
+                <div class="col"><div class="bars"><i style="height:92%;background:#3FB58C;"></i></div><span>9-B</span></div>
+                <div class="col"><div class="bars"><i style="height:88%;background:#4A3AFF;"></i></div><span>10-A</span></div>
+                <div class="col"><div class="bars"><i style="height:95%;background:#3FB58C;"></i></div><span>10-B</span></div>
+                <div class="col"><div class="bars"><i style="height:84%;background:#4A3AFF;"></i></div><span>11-A</span></div>
+                <div class="col"><div class="bars"><i style="height:79%;background:#D97706;"></i></div><span>11-B</span></div>
+                <div class="col"><div class="bars"><i style="height:91%;background:#3FB58C;"></i></div><span>12-A</span></div>
+                <div class="col"><div class="bars"><i style="height:97%;background:#3FB58C;"></i></div><span>12-B</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="c-head"><div><h3>Low-Attendance Alert</h3><p class="c-sub">Below 90% · auto-flagged</p></div><span class="chip" style="background:#FFEDE7;color:#FF5C38;">3 classes</span></div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;background:#FFF7EC;border-radius:10px;padding:10px 12px;"><b style="font-size:12.5px;color:#2B2160;">11-B</b><span style="font-size:12px;color:#8F87AD;flex:1;">5 absent · 3 late</span><b style="font-size:13px;color:#D97706;">79%</b></div>
+                <div style="display:flex;align-items:center;gap:10px;background:#FFF7EC;border-radius:10px;padding:10px 12px;"><b style="font-size:12.5px;color:#2B2160;">11-A</b><span style="font-size:12px;color:#8F87AD;flex:1;">4 absent · 2 late</span><b style="font-size:13px;color:#D97706;">84%</b></div>
+                <div style="display:flex;align-items:center;gap:10px;background:#FFF7EC;border-radius:10px;padding:10px 12px;"><b style="font-size:12.5px;color:#2B2160;">10-A</b><span style="font-size:12px;color:#8F87AD;flex:1;">3 absent · 4 late</span><b style="font-size:13px;color:#D97706;">88%</b></div>
+              </div>
+              <div style="margin-top:14px;background:#F0EEFF;border-radius:12px;padding:12px;font-size:12px;color:#5A5378;"><b style="color:#4A3AFF;">SkooBee AI:</b> "Send absence alerts to the 5 parents of 11-B students?"</div>
+            </div>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="c-head"><div><h3>Class-wise Attendance</h3></div><a style="font-size:12px;color:#4A3AFF;font-weight:600;">Open teacher roll call</a></div>
+            <table class="grid">
+              <tr><th>Class</th><th>Teacher</th><th>Present</th><th>Absent</th><th>Late</th><th>Excused</th><th>Status</th></tr>
+              <tr><td><b>Grade 9-A</b></td><td>Ms. Sharma</td><td>38</td><td>1</td><td>1</td><td>0</td><td><span class="badge b-ok"><i></i>96%</span></td></tr>
+              <tr><td><b>Grade 10-B</b></td><td>Mr. Nair</td><td>41</td><td>2</td><td>1</td><td>1</td><td><span class="badge b-ok"><i></i>95%</span></td></tr>
+              <tr><td><b>Grade 11-A</b></td><td>Ms. Gupta</td><td>35</td><td>4</td><td>2</td><td>1</td><td><span class="badge b-paidx"><i></i>84%</span></td></tr>
+              <tr><td><b>Grade 11-B</b></td><td>Mr. Rao</td><td>33</td><td>5</td><td>3</td><td>1</td><td><span class="badge b-due"><i></i>79%</span></td></tr>
+              <tr><td><b>Grade 12-B</b></td><td>Ms. Iyer</td><td>40</td><td>1</td><td>0</td><td>0</td><td><span class="badge b-ok"><i></i>97%</span></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. TEACHER SCHEDULE ============ -->
+  <section class="screen" data-shot="web-schedule">
+    <div class="label">Web · Teacher Schedule</div>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-logo">B</div><span class="brand-name">SkooBee</span></div>
+        <nav class="side-nav">
+          <div class="nav-sec"><p>Operations</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Students</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Faculty</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l9-4-9-4-9 4z"/><path d="M4 13v4c0 1.5 3.6 3 8 3s8-1.5 8-3v-4"/></svg>Admissions</div>
+          </div>
+          <div class="nav-sec"><p>Administration</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>Fees &amp; Finance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payroll</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Academic Calendar</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 16l2 2 4-4"/></svg>Daily Attendance</div>
+            <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Teacher Schedule</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13l-1 3 1 3h-13"/><path d="M12 5v14"/></svg>Promotion</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l8-4-2 8 8-4-6 8 4 2-8 4 2-8-8 4z"/></svg>Transport</div>
+          </div>
+        </nav>
+        <div class="side-foot">
+          <div class="profile"><div class="p-av">OP</div><div class="p-t"><b>Owner</b><span>Platform Owner</span></div></div>
+          <div style="padding:6px 12px; color:#8F87AD;">Log out</div>
+          <p style="margin-top:4px;">(C) 2026 SkooBee</p>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="t-title"><h1>Teacher Schedule</h1><p>Week of 24 Aug 2026</p></div>
+          <div class="t-actions">
+            <div class="seg"><button>Mon</button><button>Tue</button><button>Wed</button><button class="on">Thu</button><button>Fri</button></div>
+            <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>New Period</button>
+            <div class="av">OP</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="card" style="flex:1;">
+            <div class="c-head"><div><h3>Weekly Timetable · Ms. Gupta</h3><p class="c-sub">Grade 11 · Mathematics</p></div><span class="chip">28 periods / week</span></div>
+            <div class="week-grid">
+              <div class="period"></div>
+              <div class="day-h">Mon</div><div class="day-h">Tue</div><div class="day-h">Wed</div><div class="day-h">Thu</div><div class="day-h">Fri</div>
+              <div class="period">8:00</div>
+              <div><div class="class-box orange"><b>Math · 11-A</b><span>Room 201</span></div></div>
+              <div><div class="class-box"><b>Math · 11-B</b><span>Room 202</span></div></div>
+              <div><div class="class-box green"><b>Club · 11</b><span>Auditorium</span></div></div>
+              <div><div class="class-box"><b>Math · 11-A</b><span>Room 201</span></div></div>
+              <div><div class="class-box orange"><b>Math · 11-B</b><span>Room 202</span></div></div>
+              <div class="period">9:00</div>
+              <div><div class="class-box"><b>Math · 12-A</b><span>Room 105</span></div></div>
+              <div><div class="class-box coral"><b>Lab · 11</b><span>Sci Lab 2</span></div></div>
+              <div><div class="class-box"><b>Math · 12-B</b><span>Room 106</span></div></div>
+              <div><div class="class-box green"><b>Planning</b><span>Staff room</span></div></div>
+              <div><div class="class-box"><b>Math · 12-A</b><span>Room 105</span></div></div>
+              <div class="period">10:00</div>
+              <div><div class="class-box"><b>Math · 10-B</b><span>Room 118</span></div></div>
+              <div><div class="class-box"><b>Math · 10-A</b><span>Room 117</span></div></div>
+              <div><div class="class-box orange"><b>Math · 10-B</b><span>Room 118</span></div></div>
+              <div><div class="class-box"><b>Math · 11-B</b><span>Room 202</span></div></div>
+              <div><div class="class-box coral"><b>Doubt · 10</b><span>Room 117</span></div></div>
+              <div class="period">11:00</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;background:#FAF9FE;border-radius:8px;font-size:11.5px;color:#8F87AD;">Break</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;background:#FAF9FE;border-radius:8px;font-size:11.5px;color:#8F87AD;">Break</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;background:#FAF9FE;border-radius:8px;font-size:11.5px;color:#8F87AD;">Break</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;background:#FAF9FE;border-radius:8px;font-size:11.5px;color:#8F87AD;">Break</div>
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;background:#FAF9FE;border-radius:8px;font-size:11.5px;color:#8F87AD;">Break</div>
+              <div class="period">12:00</div>
+              <div><div class="class-box"><b>Math · 11-B</b><span>Room 202</span></div></div>
+              <div><div class="class-box orange"><b>Math · 11-A</b><span>Room 201</span></div></div>
+              <div><div class="class-box"><b>Math · 12-B</b><span>Room 106</span></div></div>
+              <div><div class="class-box"><b>Math · 12-A</b><span>Room 105</span></div></div>
+              <div><div class="class-box green"><b>Staff Meet</b><span>Conference</span></div></div>
+              <div class="period">1:00</div>
+              <div><div class="class-box coral"><b>Doubt · 11</b><span>Room 201</span></div></div>
+              <div></div>
+              <div><div class="class-box"><b>Math · 10-A</b><span>Room 117</span></div></div>
+              <div><div class="class-box green"><b>Planning</b><span>Staff room</span></div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. PAYROLL ============ -->
+  <section class="screen" data-shot="web-payroll">
+    <div class="label">Web · Payroll</div>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-logo">B</div><span class="brand-name">SkooBee</span></div>
+        <nav class="side-nav">
+          <div class="nav-sec"><p>Operations</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Students</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Faculty</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l9-4-9-4-9 4z"/><path d="M4 13v4c0 1.5 3.6 3 8 3s8-1.5 8-3v-4"/></svg>Admissions</div>
+          </div>
+          <div class="nav-sec"><p>Administration</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>Fees &amp; Finance</div>
+            <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payroll</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Academic Calendar</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 16l2 2 4-4"/></svg>Daily Attendance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Teacher Schedule</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13l-1 3 1 3h-13"/><path d="M12 5v14"/></svg>Promotion</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l8-4-2 8 8-4-6 8 4 2-8 4 2-8-8 4z"/></svg>Transport</div>
+          </div>
+        </nav>
+        <div class="side-foot">
+          <div class="profile"><div class="p-av">OP</div><div class="p-t"><b>Owner</b><span>Platform Owner</span></div></div>
+          <div style="padding:6px 12px; color:#8F87AD;">Log out</div>
+          <p style="margin-top:4px;">(C) 2026 SkooBee</p>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="t-title"><h1>Payroll</h1><p>August 2026 · Payslip cycle</p></div>
+          <div class="t-actions">
+            <button class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>Export</button>
+            <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Run Payroll</button>
+            <div class="av">OP</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="kpi-row">
+            <div class="kpi"><div class="k-head"><span class="k-label">Monthly Payroll</span></div><div class="k-val">$184K</div><div class="k-sub">148 staff</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Net Pay</span></div><div class="k-val" style="color:#3FB58C;">$172K</div><div class="k-sub">after deductions</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Deductions</span></div><div class="k-val" style="color:#D97706;">$12K</div><div class="k-sub">tax · provident fund</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Payslips</span></div><div class="k-val">148</div><div class="k-sub"><b style="color:#3FB58C;">146 sent</b> · 2 pending</div></div>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="c-head"><div><h3>Payroll Run · August 2026</h3></div><div class="seg"><button class="on">All</button><button>Teaching</button><button>Non-teaching</button></div></div>
+            <table class="grid">
+              <tr><th>Staff</th><th>Role</th><th>Basic</th><th>Allowances</th><th>Deductions</th><th>Net Pay</th><th>Status</th></tr>
+              <tr><td><b>Ms. Anjali Gupta</b></td><td>Math Teacher · G11</td><td>$1,800</td><td>$320</td><td>$215</td><td><b>$1,905</b></td><td><span class="badge b-paid"><i></i>Paid</span></td></tr>
+              <tr><td><b>Mr. Ravi Rao</b></td><td>Physics Teacher · G11</td><td>$1,750</td><td>$300</td><td>$210</td><td><b>$1,840</b></td><td><span class="badge b-paid"><i></i>Paid</span></td></tr>
+              <tr><td><b>Ms. Neha Sharma</b></td><td>English · G9</td><td>$1,650</td><td>$280</td><td>$198</td><td><b>$1,732</b></td><td><span class="badge b-paid"><i></i>Paid</span></td></tr>
+              <tr><td><b>Mr. Suresh Nair</b></td><td>Chemistry · G10</td><td>$1,720</td><td>$290</td><td>$205</td><td><b>$1,805</b></td><td><span class="badge b-paidx"><i></i>Pending</span></td></tr>
+              <tr><td><b>Ms. Lakshmi Iyer</b></td><td>Biology · G12</td><td>$1,780</td><td>$310</td><td>$212</td><td><b>$1,878</b></td><td><span class="badge b-paid"><i></i>Paid</span></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. STUDENTS ============ -->
+  <section class="screen" data-shot="web-students">
+    <div class="label">Web · Students</div>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-logo">B</div><span class="brand-name">SkooBee</span></div>
+        <nav class="side-nav">
+          <div class="nav-sec"><p>Operations</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</div>
+            <div class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Students</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Faculty</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l9-4-9-4-9 4z"/><path d="M4 13v4c0 1.5 3.6 3 8 3s8-1.5 8-3v-4"/></svg>Admissions</div>
+          </div>
+          <div class="nav-sec"><p>Administration</p>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>Fees &amp; Finance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Payroll</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Academic Calendar</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 16l2 2 4-4"/></svg>Daily Attendance</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Teacher Schedule</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13l-1 3 1 3h-13"/><path d="M12 5v14"/></svg>Promotion</div>
+            <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l8-4-2 8 8-4-6 8 4 2-8 4 2-8-8 4z"/></svg>Transport</div>
+          </div>
+        </nav>
+        <div class="side-foot">
+          <div class="profile"><div class="p-av">OP</div><div class="p-t"><b>Owner</b><span>Platform Owner</span></div></div>
+          <div style="padding:6px 12px; color:#8F87AD;">Log out</div>
+          <p style="margin-top:4px;">(C) 2026 SkooBee</p>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="topbar">
+          <div class="t-title"><h1>Students</h1><p>2,482 enrolled · 2025–26</p></div>
+          <div class="t-actions">
+            <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>Search students…</div>
+            <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add Student</button>
+            <div class="av">OP</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="kpi-row">
+            <div class="kpi"><div class="k-head"><span class="k-label">Enrolled</span></div><div class="k-val">2,482</div><div class="k-sub">+4.2% vs last term</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Boys / Girls</span></div><div class="k-val">1,318 / 1,164</div><div class="k-sub">53% / 47%</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">With Fee Waiver</span></div><div class="k-val" style="color:#D97706;">74</div><div class="k-sub">3% of students</div></div>
+            <div class="kpi"><div class="k-head"><span class="k-label">Avg Attendance</span></div><div class="k-val" style="color:#3FB58C;">94.8%</div><div class="k-sub">this month</div></div>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="c-head"><div><h3>All Students</h3></div><div class="seg"><button>All</button><button class="on">Grade 11</button><button>Grade 12</button></div></div>
+            <table class="grid">
+              <tr><th>Student</th><th>Grade</th><th>Guardian</th><th>Fees Status</th><th>Attendance</th><th></th></tr>
+              <tr><td><b>Aarav Patel</b></td><td>11-B</td><td>Rohit Patel</td><td><span class="badge b-paid"><i></i>Paid</span></td><td>96%</td><td style="color:#4A3AFF;">View</td></tr>
+              <tr><td><b>Meera Iyer</b></td><td>11-A</td><td>Karthik Iyer</td><td><span class="badge b-paid"><i></i>Paid</span></td><td>93%</td><td style="color:#4A3AFF;">View</td></tr>
+              <tr><td><b>Kabir Singh</b></td><td>11-B</td><td>Manpreet Singh</td><td><span class="badge b-partial"><i></i>Partial</span></td><td>88%</td><td style="color:#4A3AFF;">View</td></tr>
+              <tr><td><b>Ananya Rao</b></td><td>11-A</td><td>Vikram Rao</td><td><span class="badge b-due"><i></i>Due</span></td><td>91%</td><td style="color:#4A3AFF;">View</td></tr>
+              <tr><td><b>Rohan Verma</b></td><td>11-B</td><td>Sunil Verma</td><td><span class="badge b-overdue"><i></i>Overdue</span></td><td>79%</td><td style="color:#4A3AFF;">View</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -42,7 +42,7 @@ export function ContactForm() {
       setStatus({
         type: "success",
         message:
-          "Thank you! Your enquiry has been sent. The Klassify team will get back to you soon."
+          "Thank you! Your enquiry has been sent. The SkooBee team will get back to you soon."
       });
     } catch {
       setStatus({
@@ -56,7 +56,11 @@ export function ContactForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="mt-8 flex flex-col gap-4"
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <label htmlFor="full-name" className="text-sm font-semibold text-ink">
@@ -118,7 +122,10 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="school-address" className="text-sm font-semibold text-ink">
+        <label
+          htmlFor="school-address"
+          className="text-sm font-semibold text-ink"
+        >
           School address
         </label>
         <textarea

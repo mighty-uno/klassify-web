@@ -35,10 +35,10 @@ export function Waitlist() {
               <SectionLabel index="09" title="Join the waitlist" light />
 
               <h2 className="mx-auto mt-4 max-w-2xl text-balance text-4xl font-extrabold tracking-[-1.8px] md:text-[44px] md:leading-[1.08]">
-                Be one of the first schools to run on Klassify.
+                Be one of the first schools to run on SkooBee.
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-muted-3">
-                We are opening Klassify to a small group of schools first. Join
+                We are opening SkooBee to a small group of schools first. Join
                 the waitlist and we will keep you posted on early access.
               </p>
 

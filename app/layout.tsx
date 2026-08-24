@@ -7,11 +7,12 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — AI-powered school operating system`,
+    default: `${siteConfig.name} — School ERP in your pocket`,
     template: `%s — ${siteConfig.name}`
   },
   description: siteConfig.description,
   keywords: [
+    "SkooBee",
     "AI school ERP",
     "AI school management system",
     "smart school software",
@@ -27,23 +28,23 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — AI-powered school operating system`,
+    title: `${siteConfig.name} — School ERP in your pocket`,
     description: siteConfig.description,
     url: siteConfig.url,
     images: [
       {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} — AI-powered school operating system`
+        url: "/assets/skoobee-icon.png",
+        width: 512,
+        height: 512,
+        alt: `${siteConfig.name} — School ERP in your pocket`
       }
     ]
   },
   twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} — AI-powered school operating system`,
+    card: "summary",
+    title: `${siteConfig.name} — School ERP in your pocket`,
     description: siteConfig.description,
-    images: ["/og.png"]
+    images: ["/assets/skoobee-icon.png"]
   },
   robots: {
     index: true,
@@ -51,9 +52,11 @@ export const metadata: Metadata = {
     "max-image-preview": "large"
   },
   icons: {
-    icon: "/logo.svg"
+    icon: "/assets/skoobee-icon.png",
+    apple: "/assets/skoobee-icon.png"
   }
 };
+
 
 export default function RootLayout({
   children

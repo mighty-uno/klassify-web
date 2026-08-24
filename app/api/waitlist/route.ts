@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   const payload = {
     email,
     school: typeof body.school === "string" ? body.school.trim() : "",
-    _subject: "New Klassify waitlist signup",
+    _subject: "New SkooBee waitlist signup",
     _template: "table",
     _captcha: "false"
   };

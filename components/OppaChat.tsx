@@ -58,8 +58,8 @@ export function OppaChat() {
           <Sparkles size={16} />
         </span>
         <div className="flex-1">
-          <p className="text-sm font-bold text-ink">Oppa — Learning Assistant</p>
-          <p className="text-xs text-muted-2">Answers drawn from your books</p>
+          <p className="text-sm font-bold text-ink">Oppa — SkooBee AI Assistant</p>
+          <p className="text-xs text-muted-2">Answers drawn from your live books & school data</p>
         </div>
         <span className="label-mono inline-flex items-center gap-1.5 rounded-full border border-success/30 bg-success/10 px-2.5 py-1 text-success">
           <span className="h-1.5 w-1.5 rounded-full bg-success" />

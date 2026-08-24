@@ -7,36 +7,37 @@ import { SectionLabel } from "@/components/SectionLabel";
 
 const faqs = [
   {
-    question: "How long does it take to set up Klassify for our school?",
+    question: "How long does it take to set up SkooBee for our school?",
     answer:
       "Most schools go live in under two weeks. Our onboarding team helps import classes, staff and students, and trains your team so day one feels familiar."
   },
   {
     question: "Does the voice attendance work for large classrooms?",
     answer:
-      "Yes. Teachers read out names and Klassify captures the roll call in about three seconds per student, flagging absentees and notifying parents instantly — even for full-size classrooms."
+      "Yes. Teachers read out names and SkooBee captures the roll call in about three seconds per student, flagging absentees and notifying parents instantly — even for full-size classrooms."
   },
   {
     question: "Is our student and parent data secure?",
     answer:
-      "Absolutely. Klassify follows standard security practices for education data, including encrypted storage and access controls, so only authorised staff can view records. See our Privacy Policy for full details."
+      "Absolutely. SkooBee follows standard security practices for education data, including encrypted storage and access controls, so only authorised staff can view records. See our Privacy Policy for full details."
   },
   {
     question: "Will our office staff need to change how they work?",
     answer:
-      "No. Klassify is designed around the workflows schools already follow, so teams adopt it quickly. The AI quietly automates the repetitive parts while people keep their familiar routines."
+      "No. SkooBee is designed around the workflows schools already follow, so teams adopt it quickly. The AI quietly automates the repetitive parts while people keep their familiar routines."
   },
   {
-    question: "Can parents use Klassify on their phones?",
+    question: "Can parents use SkooBee on their phones?",
     answer:
-      "Yes. Parents get a mobile-friendly portal with daily attendance updates, fee status and progress insights — no separate app installation required."
+      "Yes. Parents get mobile app and mobile-friendly web access with daily attendance updates, fee status and progress insights."
   },
   {
-    question: "What does Klassify cost?",
+    question: "What does SkooBee cost?",
     answer:
       "Pricing is per student, per month and depends on your school's size and selected plan. Book a demo and we'll share a clear quote tailored to your school."
   }
 ];
+
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
