@@ -5,6 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
     "/contact",
+    "/bee-bud",
     "/privacy",
     "/terms",
     "/cookies"
@@ -14,6 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteConfig.url}${route}`,
     lastModified: new Date("2026-08-15"),
     changeFrequency: route === "" ? "monthly" : "yearly",
-    priority: route === "" ? 1 : route === "/contact" ? 0.8 : 0.4
+    priority: route === "" ? 1 : route === "/contact" ? 0.8 : route === "/bee-bud" ? 0.8 : 0.4
   }));
 }

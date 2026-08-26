@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { ZEPTOMAIL_ENABLED, sendEnquiryEmail } from "@/lib/zeptoMail";
+import { TURSO_ENABLED, insertApplication } from "@/lib/turso";
+import { ZEPTOMAIL_ENABLED, sendApplicationEmail } from "@/lib/zeptoMail";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -9,7 +10,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const required = ["name", "mobile", "email"];
+  const required = ["name", "email", "region", "partnerType", "qualification"];
   for (const field of required) {
     const value = typeof body[field] === "string" ? (body[field] as string).trim() : "";
     if (!value) {
@@ -23,17 +24,26 @@ export async function POST(request: Request) {
   if (typeof body.email === "string" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
     return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
   }
-  if (typeof body.mobile === "string" && !/^[0-9]{10}$/.test(body.mobile)) {
-    return NextResponse.json({ error: "Please enter a valid 10-digit mobile number." }, { status: 400 });
-  }
 
-  const enquiry = {
+  const application = {
     name: String(body.name ?? "").trim(),
-    mobile: String(body.mobile ?? "").trim(),
     email: String(body.email ?? "").trim(),
-    school: String(body.school ?? "").trim(),
-    address: String(body.address ?? "").trim()
+    company: String(body.company ?? "").trim(),
+    role: String(body.role ?? "").trim(),
+    region: String(body.region ?? "").trim(),
+    partnerType: String(body.partnerType ?? "").trim(),
+    qualification: String(body.qualification ?? "").trim(),
+    message: String(body.message ?? "").trim()
   };
+
+  if (!TURSO_ENABLED) {
+    console.warn("Turso is not configured. Set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN.");
+  }
+  try {
+    await insertApplication(application);
+  } catch (error) {
+    console.error("Turso insert failed:", error);
+  }
 
   if (!ZEPTOMAIL_ENABLED) {
     console.warn(
@@ -42,12 +52,12 @@ export async function POST(request: Request) {
   }
 
   try {
-    await sendEnquiryEmail(enquiry);
+    await sendApplicationEmail(application);
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("ZeptoMail send failed:", error);
     return NextResponse.json(
-      { error: "Something went wrong while sending your enquiry." },
+      { error: "Something went wrong while sending your application." },
       { status: 502 }
     );
   }
