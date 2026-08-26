@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/vidhiworks@zohomail.in";
+import { ZEPTOMAIL_ENABLED, sendEnquiryEmail } from "@/lib/zeptoMail";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -28,37 +27,25 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please enter a valid 10-digit mobile number." }, { status: 400 });
   }
 
-  const payload = {
+  const enquiry = {
     name: String(body.name ?? "").trim(),
     mobile: String(body.mobile ?? "").trim(),
     email: String(body.email ?? "").trim(),
     school: String(body.school ?? "").trim(),
-    address: String(body.address ?? "").trim(),
-    _subject: "New SkooBee contact enquiry",
-    _template: "table",
-    _captcha: "false"
+    address: String(body.address ?? "").trim()
   };
 
+  if (!ZEPTOMAIL_ENABLED) {
+    console.warn(
+      "ZeptoMail is not configured. Set ZEPTOMAIL_API_TOKEN and ZEPTOMAIL_FROM_EMAIL."
+    );
+  }
+
   try {
-    const response = await fetch(FORM_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(15000)
-    });
-
-    if (!response.ok) {
-      return NextResponse.json(
-        { error: "Something went wrong while sending your enquiry." },
-        { status: 502 }
-      );
-    }
-
+    await sendEnquiryEmail(enquiry);
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (error) {
+    console.error("ZeptoMail send failed:", error);
     return NextResponse.json(
       { error: "Something went wrong while sending your enquiry." },
       { status: 502 }

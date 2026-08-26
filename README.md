@@ -10,9 +10,9 @@ This repository contains the official SkooBee marketing website and interactive 
 - **Styling:** Tailwind CSS + Vanilla CSS tokens
 - **Animations:** Framer Motion
 - **Icons:** Lucide React
-- **Forms:** FormSubmit integration with client validation (contact + waitlist); Bee-Bud partner applications send their notification via ZeptoMail
+- **Forms:** FormSubmit integration with client validation (waitlist); contact enquiries and Bee-Bud partner applications send their notifications via ZeptoMail
 - **Database:** Turso (libsql) stores Bee-Bud partner applications via `lib/turso.ts` (`TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` env vars, see `.env.example`)
-- **Transactional email:** ZeptoMail sends the Bee-Bud application notification via `lib/zeptoMail.ts` with the branded template in `lib/emailTemplates.ts` (`ZEPTOMAIL_API_TOKEN` / `ZEPTOMAIL_FROM_EMAIL` / `ZEPTOMAIL_TO_EMAIL`, see `.env.example`)
+- **Transactional email:** ZeptoMail sends the contact enquiry and Bee-Bud application notifications via `lib/zeptoMail.ts` with branded templates in `lib/emailTemplates.ts` (`ZEPTOMAIL_API_TOKEN` / `ZEPTOMAIL_FROM_EMAIL` / `ZEPTOMAIL_TO_EMAIL`, see `.env.example`)
 - **Interactive Slides:** `/slides` — full-featured interactive presentation deck with web/mobile carousels and keyboard controls
 
 ## Key Routes
