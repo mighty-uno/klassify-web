@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
+  allowedDevOrigins: [".monkeycode-ai.live"],
   eslint: {
     ignoreDuringBuilds: true
   }

@@ -24,6 +24,7 @@ export const NAV_LINKS = [
   { label: "AI for schools", href: "/#ai" },
   { label: "Why SkooBee", href: "/#why" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "FAQ", href: "/#faq" }
+  { label: "FAQ", href: "/#faq" },
+  { label: "Bee-Bud", href: "/bee-bud" }
 ] as const;
 

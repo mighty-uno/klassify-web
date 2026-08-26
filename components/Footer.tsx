@@ -29,7 +29,8 @@ const columns = [
     links: [
       { label: "About SkooBee", href: "/#why" },
       { label: "Contact us", href: "/contact" },
-      { label: "Book a demo", href: "/contact" }
+      { label: "Book a demo", href: "/contact" },
+      { label: "Bee-Bud program", href: "/bee-bud" }
     ]
   },
   {

@@ -10,7 +10,9 @@ This repository contains the official SkooBee marketing website and interactive 
 - **Styling:** Tailwind CSS + Vanilla CSS tokens
 - **Animations:** Framer Motion
 - **Icons:** Lucide React
-- **Forms:** FormSubmit integration with client validation
+- **Forms:** FormSubmit integration with client validation (contact + waitlist); Bee-Bud partner applications send their notification via ZeptoMail
+- **Database:** Turso (libsql) stores Bee-Bud partner applications via `lib/turso.ts` (`TURSO_DATABASE_URL` / `TURSO_AUTH_TOKEN` env vars, see `.env.example`)
+- **Transactional email:** ZeptoMail sends the Bee-Bud application notification via `lib/zeptoMail.ts` with the branded template in `lib/emailTemplates.ts` (`ZEPTOMAIL_API_TOKEN` / `ZEPTOMAIL_FROM_EMAIL` / `ZEPTOMAIL_TO_EMAIL`, see `.env.example`)
 - **Interactive Slides:** `/slides` — full-featured interactive presentation deck with web/mobile carousels and keyboard controls
 
 ## Key Routes
@@ -20,6 +22,7 @@ This repository contains the official SkooBee marketing website and interactive 
 | `/` | Landing page with Hero, Trust bar, Difference, Product visual showcase, AI engine preview, Oppa learning assistant, Pricing, and FAQ |
 | `/slides` | Interactive system overview presentation deck with keyboard controls and live ERP screenshots |
 | `/contact` | Book-a-demo and contact enquiry form |
+| `/bee-bud` | Bee-Bud partner program — join the hive and earn a monthly honey drop |
 | `/privacy` | Privacy Policy, generated for the SkooBee / Vidhiworks context |
 | `/terms` | Terms of Service |
 | `/cookies` | Cookie Policy |
