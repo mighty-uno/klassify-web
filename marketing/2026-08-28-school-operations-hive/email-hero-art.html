@@ -26,7 +26,7 @@
     display: flex; align-items: center; justify-content: space-between;
   }
   .brand { display: flex; align-items: center; gap: 14px; }
-  .brand .icon { width: 46px; height: 46px; }
+  .brand .icon { width: 46px; height: 46px; border-radius: 10px; display: block; }
   .brand .wordmark { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
   .brand .tag { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #8a8fa3; }
   .content { position: relative; z-index: 2; padding: 148px 84px 72px; display: flex; flex-direction: column; }
@@ -68,11 +68,7 @@
     <div class="glow-honey"></div>
     <div class="header">
       <div class="brand">
-        <svg class="icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="4" width="92" height="92" rx="24" fill="#0d0e1a" stroke="#ffffff22" stroke-width="2"/>
-          <path fill="none" stroke="#ffc93c" stroke-linecap="round" stroke-linejoin="round" stroke-width="11" d="M33 22v56m0-28 36-26M33 50l36 26"/>
-          <circle cx="67" cy="22" r="9" fill="#ffc93c"/>
-        </svg>
+        <img class="icon" src="skoobee-icon.png" alt="SkooBee" />
         <div>
           <div class="wordmark">SkooBee</div>
           <div class="tag">School ERP in your pocket</div>

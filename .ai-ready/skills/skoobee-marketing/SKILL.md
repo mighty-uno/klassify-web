@@ -16,7 +16,7 @@ Every time the team says "generate another SkooBee marketing template" (or asks 
 - **Product**: SkooBee — AI-powered school ERP / operating system. Built by Vidhiworks.
 - **Website / CTA domain**: `skoobee.in` (use for all demo/book links, e.g. `https://skoobee.in/contact`).
 - **Tagline**: "School ERP in your pocket."
-- **Constant icon lockup**: EVERY generated image must include the SkooBee brand lockup — the mark icon (rounded navy square with honey "S" stroke and honey dot, from `assets/skoobee-mark.svg` or the inline SVG in the art templates) next to the "SkooBee" wordmark with tagline "School ERP in your pocket". Use the exact same lockup in every image generation. On Instagram add the handle `@skoobee` on the opposite side of the header.
+- **Constant icon lockup**: EVERY generated image must include the SkooBee brand lockup — the bee icon (`assets/skoobee-icon.png`: honey bee on a navy rounded-square badge) next to the "SkooBee" wordmark with tagline "School ERP in your pocket". Use the exact same lockup in every image generation. On Instagram add the handle `@skoobee` on the opposite side of the header.
 - **Modules**: Attendance (3-second voice roll call; saves ~30 min per teacher per day; instant parent absence alerts), Fees (auto-reminders, digital ledgers), Results (visual report cards with AI comments), Auto reports, Payroll, Schedules, Oppa AI learning assistant (upload your textbooks → chat with them).
 - **Value props**: one source of truth for every team; clear workflows for every role; more focus on student outcomes; free for teachers every day.
 - **Pricing**: one plan, per student per month, custom quote; no per-module add-ons.
@@ -129,7 +129,7 @@ Style the HTML like the existing repo templates (`lib/emailTemplates.ts`): `#f7f
 
 Reusable script shipped in this skill: `render.ts`.
 
-**Every art file MUST include the constant SkooBee icon lockup** (mark icon + "SkooBee" wordmark + tagline) in the header — copy the inline SVG block from the sample art templates (`marketing/2026-08-28-school-operations-hive/*-art.html`) so the icon stays identical across all generations. Instagram art adds the `@skoobee` handle in the header too. The "Book a demo" CTA button must be a real link: `<a class="btn" href="https://skoobee.in">Book a demo</a>`.
+**Every art file MUST include the constant SkooBee icon lockup** (bee icon from `assets/skoobee-icon.png` + "SkooBee" wordmark + tagline) in the header — reference the image with `<img class="icon" src="skoobee-icon.png" alt="SkooBee" />` and keep a copy of `skoobee-icon.png` beside the art file so the icon stays identical across all generations. Instagram art adds the `@skoobee` handle in the header too. The "Book a demo" CTA button must be a real link: `<a class="btn" href="https://skoobee.in">Book a demo</a>`.
 
 ```bash
 # Usage

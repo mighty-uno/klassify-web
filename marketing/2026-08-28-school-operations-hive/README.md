@@ -15,6 +15,7 @@ Audience: Email → school leadership · Instagram → parent-facing
 | `render.ts` | Reusable Bun.WebView render script (same as the skill's) |
 | `email-hero-art.html` | Source art for the email banner |
 | `ig-post-art.html` | Source art for the IG post |
+| `skoobee-icon.png` | Official SkooBee bee icon (brand lockup, same in every image) |
 
 ## Email subject-line options
 
