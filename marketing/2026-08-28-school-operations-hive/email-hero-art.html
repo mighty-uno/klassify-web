@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { font-family: Inter, Helvetica, Arial, sans-serif; }
+  .wrap {
+    position: relative; width: 1200px; height: 630px;
+    background: #0d0e1a; color: #ffffff; display: flex;
+  }
+  .honey-top { position: absolute; top: 0; left: 0; right: 0; height: 10px; background: #ffc93c; }
+  .glow {
+    position: absolute; top: -180px; left: 50%; transform: translateX(-50%);
+    width: 720px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,58,255,0.45) 0%, rgba(74,58,255,0) 70%);
+  }
+  .glow-honey {
+    position: absolute; right: -140px; bottom: -140px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,201,60,0.22) 0%, rgba(255,201,60,0) 70%);
+  }
+  .header {
+    position: absolute; top: 34px; left: 84px; right: 84px; z-index: 3;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand .icon { width: 46px; height: 46px; }
+  .brand .wordmark { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .brand .tag { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #8a8fa3; }
+  .content { position: relative; z-index: 2; padding: 148px 84px 72px; display: flex; flex-direction: column; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
+    border: 1px solid rgba(255,255,255,0.22); border-radius: 999px;
+    padding: 9px 16px; background: rgba(255,255,255,0.08);
+    font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .eyebrow .dot { width: 9px; height: 9px; border-radius: 50%; background: #ffc93c; }
+  h1 {
+    margin-top: 28px; font-size: 54px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
+    max-width: 900px;
+  }
+  h1 .accent { color: #ffc93c; }
+  p.sub {
+    margin-top: 22px; font-size: 20px; line-height: 1.5; color: #c7cbe0; max-width: 720px; font-weight: 400;
+  }
+  .cta-row { margin-top: 40px; display: flex; align-items: center; gap: 22px; }
+  .btn {
+    background: #4a3aff; color: #ffffff; font-size: 18px; font-weight: 700;
+    padding: 15px 32px; border-radius: 12px;
+  }
+  .btn-ghost { color: #c7cbe0; font-size: 16px; font-weight: 600; }
+  .btn-ghost strong { color: #ffffff; }
+  .chip {
+    position: absolute; bottom: 38px; left: 84px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #ffffff; color: #14162b; border-radius: 12px; padding: 13px 19px;
+    font-size: 14px; font-weight: 700;
+  }
+  .chip .dot { width: 10px; height: 10px; border-radius: 50%; background: #ffc93c; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="honey-top"></div>
+    <div class="glow"></div>
+    <div class="glow-honey"></div>
+    <div class="header">
+      <div class="brand">
+        <svg class="icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="92" height="92" rx="24" fill="#0d0e1a" stroke="#ffffff22" stroke-width="2"/>
+          <path fill="none" stroke="#ffc93c" stroke-linecap="round" stroke-linejoin="round" stroke-width="11" d="M33 22v56m0-28 36-26M33 50l36 26"/>
+          <circle cx="67" cy="22" r="9" fill="#ffc93c"/>
+        </svg>
+        <div>
+          <div class="wordmark">SkooBee</div>
+          <div class="tag">School ERP in your pocket</div>
+        </div>
+      </div>
+      <div class="eyebrow"><span class="dot"></span>AI School ERP</div>
+    </div>
+    <div class="content">
+      <h1>Your school already has the people.<br /><span class="accent">Give them one calm system.</span></h1>
+      <p class="sub">Attendance, fees, results and reports — in a single operating system that runs quietly in the background, so your team&apos;s time goes back to students.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://skoobee.in">Book a demo</a>
+        <span class="btn-ghost">skoobee.in →</span>
+      </div>
+    </div>
+    <span class="chip"><span class="dot"></span>Free for your teachers, every day</span>
+  </div>
+</body>
+</html>
