@@ -100,7 +100,7 @@ export default function SlidesPage() {
 
       {/* Slide 2: The Problem */}
       {cur === 1 && (
-        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 md:items-center animate-fadeIn">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#4A3AFF]">The Problem</span>
           <h2 className="mt-2 text-3xl md:text-4xl lg:text-5xl font-black font-serif leading-tight max-w-3xl">
             School software runs on desktop, <span className="text-[#4A3AFF]">but school life runs everywhere.</span>
@@ -109,7 +109,7 @@ export default function SlidesPage() {
             Traditional ERPs stop at the school gate — teachers and parents are left out of the loop, and admin teams drown in manual work.
           </p>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
+          <div className="mt-8 grid w-full grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
             <div className="rounded-2xl border border-[#F3E7D2] bg-white p-6 shadow-sm">
               <div className="h-11 w-11 rounded-xl bg-[#F0EEFF] text-[#4A3AFF] flex items-center justify-center mb-4 font-bold text-lg">🏫</div>
               <h3 className="text-lg font-bold text-[#2B2160] mb-2">Admin</h3>
@@ -137,7 +137,7 @@ export default function SlidesPage() {
 
       {/* Slide 3: What We're Solving */}
       {cur === 2 && (
-        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 md:items-center animate-fadeIn">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#4A3AFF]">Our Objective</span>
           <h2 className="mt-2 text-3xl md:text-4xl lg:text-5xl font-black font-serif leading-tight">
             What problems we&apos;re solving
@@ -146,7 +146,7 @@ export default function SlidesPage() {
             We&apos;re not porting the web to mobile — we&apos;re building the right layer for each role. Web for depth, mobile for speed, AI for answers.
           </p>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl">
+          <div className="mt-8 grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl">
             {[
               { num: "01", title: "Consolidate the chaos", desc: "One source of truth for students, fees, attendance, schedules and payroll — replacing spreadsheets and scattered WhatsApp groups." },
               { num: "02", title: "Make admin frictionless", desc: "Collection vs target at a glance, drillable charts, defaulters surfaced automatically, and follow-ups handled for you." },
@@ -167,14 +167,14 @@ export default function SlidesPage() {
 
       {/* Slide 4: Comparison vs Traditional ERPs */}
       {cur === 3 && (
-        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 md:items-center animate-fadeIn">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#4A3AFF]">Differentiation</span>
           <h2 className="mt-2 text-3xl md:text-4xl lg:text-5xl font-black font-serif leading-tight">
             How we differ from traditional ERPs
           </h2>
 
-          <div className="mt-8 max-w-5xl overflow-hidden rounded-2xl border border-[#F3E7D2] bg-white shadow-sm">
-            <table className="w-full text-left text-sm border-collapse">
+          <div className="mt-8 w-full max-w-5xl overflow-x-auto rounded-2xl border border-[#F3E7D2] bg-white shadow-sm">
+            <table className="w-full min-w-[640px] text-left text-sm border-collapse">
               <thead>
                 <tr className="border-b border-[#F3E7D2] bg-[#FAF8F5]">
                   <th className="py-3 px-5 text-xs font-bold uppercase text-[#8F87AD] w-1/4">Aspect</th>
@@ -194,9 +194,11 @@ export default function SlidesPage() {
                   <tr key={i} className="hover:bg-[#FAF9FC]">
                     <td className="py-3.5 px-5 font-bold text-[#2B2160]">{row.title}</td>
                     <td className="py-3.5 px-5 text-[#8F87AD]">{row.oldVal}</td>
-                    <td className="py-3.5 px-5 font-bold text-[#3FB58C] bg-[#F0EEFF]/20 flex items-center gap-2">
-                      <Check size={14} className="shrink-0 text-[#3FB58C]" />
-                      <span>{row.newVal}</span>
+                    <td className="py-3.5 px-5 font-bold text-[#3FB58C] bg-[#F0EEFF]/20">
+                      <div className="flex items-center gap-2">
+                        <Check size={14} className="shrink-0 text-[#3FB58C]" />
+                        <span>{row.newVal}</span>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -208,13 +210,13 @@ export default function SlidesPage() {
 
       {/* Slide 5: Time Optimization */}
       {cur === 4 && (
-        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 md:items-center animate-fadeIn">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#4A3AFF]">Impact</span>
           <h2 className="mt-2 text-3xl md:text-4xl lg:text-5xl font-black font-serif leading-tight">
             How each role gets its time back
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
+          <div className="mt-8 grid w-full grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
             <div className="rounded-2xl border border-[#F3E7D2] bg-white p-6 shadow-sm flex flex-col gap-3">
               <span className="text-xs font-bold uppercase tracking-wider text-[#4A3AFF]">Parent</span>
               <div className="rounded-xl bg-[#FFEDE7] p-3 text-xs text-[#7A2E1E] leading-relaxed">
@@ -242,7 +244,7 @@ export default function SlidesPage() {
             </div>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-[#F3E7D2] bg-white p-6 shadow-sm max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="mt-6 w-full rounded-2xl border border-[#F3E7D2] bg-white p-6 shadow-sm max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#4A3AFF]">School Leadership & Admin</span>
               <p className="text-sm text-[#5A5378] mt-1">
@@ -258,13 +260,13 @@ export default function SlidesPage() {
 
       {/* Slide 6: AI-Led Features */}
       {cur === 5 && (
-        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 text-white bg-[radial-gradient(120%_140%_at_85%_-10%,#3B2A8F_0%,#2B2160_45%,#1D1550_100%)] animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 text-white bg-[radial-gradient(120%_140%_at_85%_-10%,#3B2A8F_0%,#2B2160_45%,#1D1550_100%)] animate-fadeIn md:items-center">
           <span className="text-xs font-extrabold uppercase tracking-widest text-[#B7ADFF]">AI-Led Features · Auto-Pilot</span>
           <h2 className="mt-2 text-3xl md:text-4xl lg:text-5xl font-black font-serif leading-tight">
             The auto-pilot for school operations
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl">
+          <div className="mt-8 grid w-full grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl">
             <div className="flex flex-col gap-4">
               <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur">
                 <div className="flex items-center justify-between mb-2">
@@ -309,7 +311,7 @@ export default function SlidesPage() {
 
       {/* Slide 7: Web Experience Carousel */}
       {cur === 6 && (
-        <div className="absolute inset-0 flex flex-col justify-between px-10 md:px-20 py-12 animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-between px-10 md:px-20 py-12 md:items-center animate-fadeIn">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#4A3AFF]">Web Experience</span>
             <h2 className="mt-1 text-2xl md:text-3xl lg:text-4xl font-black font-serif leading-tight">
@@ -366,7 +368,7 @@ export default function SlidesPage() {
 
       {/* Slide 8: Mobile Experience Carousel */}
       {cur === 7 && (
-        <div className="absolute inset-0 flex flex-col justify-between px-10 md:px-20 py-12 text-white bg-[radial-gradient(120%_140%_at_85%_-10%,#3B2A8F_0%,#2B2160_45%,#1D1550_100%)] animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-between px-10 md:px-20 py-12 text-white bg-[radial-gradient(120%_140%_at_85%_-10%,#3B2A8F_0%,#2B2160_45%,#1D1550_100%)] animate-fadeIn md:items-center">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#B7ADFF]">Mobile Experience</span>
             <h2 className="mt-1 text-2xl md:text-3xl lg:text-4xl font-black font-serif leading-tight">
@@ -423,7 +425,7 @@ export default function SlidesPage() {
 
       {/* Slide 9: The Hero Product & CTA */}
       {cur === 8 && (
-        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 text-white bg-[radial-gradient(120%_140%_at_85%_-10%,#3B2A8F_0%,#2B2160_45%,#1D1550_100%)] animate-fadeIn">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-20 py-16 text-white bg-[radial-gradient(120%_140%_at_85%_-10%,#3B2A8F_0%,#2B2160_45%,#1D1550_100%)] animate-fadeIn md:items-center">
           <div className="flex items-center gap-3">
             <span className="text-xs font-extrabold uppercase tracking-widest text-[#B7ADFF]">The Hero Product</span>
             <span className="rounded-full bg-[#D97706]/30 border border-[#FFC77D]/30 px-3 py-0.5 text-[11px] font-bold text-[#FFC77D] uppercase">Future Release</span>
@@ -432,7 +434,7 @@ export default function SlidesPage() {
             SkooBee AI — <span className="text-[#FFC77D]">ask, don&apos;t click.</span>
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl">
+          <div className="mt-8 grid w-full grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl">
             <div className="flex justify-center">
               <div className="overflow-hidden rounded-3xl border-4 border-[#1D1550] shadow-2xl bg-black max-h-[380px]">
                 <Image src="/assets/mobile-agent.png" alt="SkooBee AI agent" width={240} height={480} className="max-h-[380px] w-auto object-contain" />
@@ -480,7 +482,7 @@ export default function SlidesPage() {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 max-w-5xl">
+          <div className="mt-8 w-full flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 max-w-5xl">
             <p className="text-xs text-[#C9C1EA]">
               Ready to see it live? The web console and mobile apps ship today — SkooBee AI lands next.
             </p>
