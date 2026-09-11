@@ -53,8 +53,8 @@ export function TypewriterHeadline({ className }: { className?: string }) {
       <span aria-hidden>{text}</span>
       <span
         aria-hidden
-        className="ml-1 inline-block h-[0.88em] w-[3px] translate-y-[0.08em] rounded-full bg-accent"
-        style={{ animation: "cursor-blink 1s steps(2) infinite" }}
+        className="ml-1 inline-block h-[0.88em] w-[3px] rounded-full bg-accent align-middle"
+        style={{ animation: "cursor-blink 1.1s ease-in-out infinite" }}
       />
     </h1>
   );

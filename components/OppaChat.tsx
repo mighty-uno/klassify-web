@@ -97,8 +97,8 @@ export function OppaChat() {
                   {typed}
                   <span
                     aria-hidden
-                    className="ml-0.5 inline-block h-[0.9em] w-[2px] translate-y-[0.12em] bg-primary"
-                    style={{ animation: "cursor-blink 1s steps(2) infinite" }}
+                    className="ml-0.5 inline-block h-[0.9em] w-[2px] rounded-full bg-primary align-middle"
+                    style={{ animation: "cursor-blink 1.1s ease-in-out infinite" }}
                   />
                 </div>
                 <AnimatePresence>
