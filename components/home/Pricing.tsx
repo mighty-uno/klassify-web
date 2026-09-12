@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Check, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
+import { siteConfig } from "@/lib/site";
 
 const included = [
   "Attendance, fees, results & reports",
@@ -60,9 +61,19 @@ export function Pricing() {
                 </div>
 
                 <div className="flex shrink-0 flex-col items-start gap-4 md:items-end md:pt-1">
-                  <Link href="/contact" className="btn-primary">
-                    Book a demo
-                  </Link>
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <Link href="/contact" className="btn-primary">
+                      Book a demo
+                    </Link>
+                    <a
+                      href={siteConfig.appUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost"
+                    >
+                      Launch Application
+                    </a>
+                  </div>
                   <Link
                     href="/contact"
                     className="text-sm font-semibold text-muted transition-colors hover:text-primary"

@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { NAV_LINKS } from "@/lib/site";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { NAV_LINKS, siteConfig } from "@/lib/site";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,6 +51,27 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-3">
+          <a
+            href={siteConfig.whatsapp.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp"
+            className={`hidden h-10 w-10 items-center justify-center rounded-[10px] transition-colors sm:inline-flex ${
+              scrolled
+                ? "border border-line bg-white text-[#25D366] hover:bg-[#25D366]/10"
+                : "border border-white/20 bg-white/10 text-[#25D366] hover:bg-white/20"
+            }`}
+          >
+            <WhatsAppIcon />
+          </a>
+          <a
+            href={siteConfig.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`hidden sm:inline-flex ${scrolled ? "btn-ghost" : "btn-secondary"}`}
+          >
+            Launch Application
+          </a>
           <Link href="/contact" className="btn-primary hidden sm:inline-flex">
             Book a demo
           </Link>
@@ -79,10 +101,28 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href={siteConfig.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-3 py-4 text-lg font-semibold text-ink hover:bg-white"
+            >
+              WhatsApp
+            </a>
+            <a
+              href={siteConfig.appUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="btn-ghost mt-6"
+            >
+              Launch Application
+            </a>
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="btn-primary mt-6"
+              className="btn-primary"
             >
               Book a demo
             </Link>

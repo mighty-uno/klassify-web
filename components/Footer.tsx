@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { siteConfig } from "@/lib/site";
 
 const columns = [
@@ -30,7 +32,8 @@ const columns = [
       { label: "About SkooBee", href: "/#why" },
       { label: "Contact us", href: "/contact" },
       { label: "Book a demo", href: "/contact" },
-      { label: "Bee-Bud program", href: "/bee-bud" }
+      { label: "Bee-Bud program", href: "/bee-bud" },
+      { label: "Launch Application", href: "https://app.skoobee.in" }
     ]
   },
   {
@@ -59,20 +62,62 @@ export function Footer() {
           >
             {siteConfig.email}
           </a>
+          <a
+            href={siteConfig.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark"
+          >
+            app.skoobee.in
+            <ExternalLink size={14} />
+          </a>
+          <div className="mt-2 flex items-center gap-3">
+            <a
+              href={siteConfig.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-line bg-white text-[#25D366] transition-colors hover:border-[#25D366]/40 hover:bg-[#25D366]/10"
+            >
+              <WhatsAppIcon />
+            </a>
+          </div>
+          <div className="mt-2 flex flex-col gap-2">
+            <p className="label-mono uppercase text-muted-2">Follow on Instagram</p>
+            <Image
+              src={siteConfig.instagramQr}
+              alt="Scan to follow SkooBee on Instagram"
+              width={140}
+              height={140}
+              className="h-[140px] w-[140px] rounded-xl border border-line bg-white p-1.5"
+            />
+          </div>
         </div>
 
         {columns.map((col) => (
           <div key={col.title} className="flex flex-col gap-3">
             <p className="label-mono uppercase text-muted-2">{col.title}</p>
-            {col.links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-ink transition-colors hover:text-primary"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {col.links.map((link) =>
+              link.href.startsWith("http") ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-ink transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-ink transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
         ))}
       </div>

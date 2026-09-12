@@ -9,12 +9,18 @@ export const siteConfig = {
   description:
     "SkooBee is the AI-powered school ERP and operating system that automates attendance, billing, schedules, payroll, and report cards — saving hours for teachers and admin, while giving parents daily, real-time insights.",
   url: "https://skoobee.vidhiworks.com",
+  appUrl: "https://app.skoobee.in",
   email: "contact.skoobee@vidhiworks.com",
   supportEmail: "vidhiworks@zohomail.in",
   registeredOffice: "Mumbai, Maharashtra, India",
   currency: "INR",
   foundingYear: "2026",
-  lastUpdated: "24 August 2026"
+  lastUpdated: "24 August 2026",
+  whatsapp: {
+    number: "9761989905",
+    href: "https://wa.me/919761989905"
+  },
+  instagramQr: "/assets/instagram-qr.webp"
 } as const;
 
 export const NAV_LINKS = [

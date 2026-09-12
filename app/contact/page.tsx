@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Mail } from "lucide-react";
+import { ExternalLink, Mail } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -86,6 +87,54 @@ export default function ContactPage() {
                     {siteConfig.email}
                   </a>
                   <p className="text-sm text-muted-2">Reach us directly, any time</p>
+                </div>
+              </div>
+
+              <a
+                href={siteConfig.whatsapp.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-line bg-white text-[#25D366]">
+                  <WhatsAppIcon />
+                </span>
+                <div>
+                  <p className="text-[15px] font-semibold text-ink hover:text-primary">
+                    WhatsApp
+                  </p>
+                  <p className="text-sm text-muted-2">{siteConfig.whatsapp.number}</p>
+                </div>
+              </a>
+
+              <a
+                href={siteConfig.appUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-line bg-white text-primary">
+                  <ExternalLink size={16} />
+                </span>
+                <div>
+                  <p className="text-[15px] font-semibold text-ink hover:text-primary">
+                    app.skoobee.in
+                  </p>
+                  <p className="text-sm text-muted-2">Open the SkooBee application</p>
+                </div>
+              </a>
+
+              <div className="flex items-start gap-3">
+                <Image
+                  src={siteConfig.instagramQr}
+                  alt="Scan to follow SkooBee on Instagram"
+                  width={112}
+                  height={112}
+                  className="h-28 w-28 rounded-xl border border-line bg-white p-1"
+                />
+                <div className="pt-2">
+                  <p className="text-[15px] font-semibold text-ink">Instagram</p>
+                  <p className="text-sm text-muted-2">Scan the QR code to follow us</p>
                 </div>
               </div>
             </div>
