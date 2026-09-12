@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { TypewriterHeadline } from "@/components/TypewriterHeadline";
+import { siteConfig } from "@/lib/site";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -63,6 +64,14 @@ export function Hero() {
             Book a demo
             <ArrowRight size={16} />
           </Link>
+          <a
+            href={siteConfig.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+          >
+            Launch Application
+          </a>
           <Link href="/slides" className="btn-secondary flex items-center gap-2">
             <span>View system slides</span>
             <span className="rounded bg-accent px-1.5 py-0.5 text-[10px] font-bold uppercase text-white">Interactive</span>

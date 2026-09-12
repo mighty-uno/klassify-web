@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { siteConfig } from "@/lib/site";
 
 export function CTA() {
   return (
@@ -31,6 +32,14 @@ export function CTA() {
                   Book a demo
                   <ArrowRight size={16} />
                 </Link>
+                <a
+                  href={siteConfig.appUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost"
+                >
+                  Launch Application
+                </a>
                 <Link href="/slides" className="btn-secondary">
                   Explore system slides
                 </Link>
